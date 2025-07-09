@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Results - School Administrator</title>
+  <link rel="stylesheet" href="../maincpdashboard.css" />
+  <link rel="stylesheet" href="upload-results.css" />
+</head>
+<body>
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="logo">STUDILY</div>
+    <nav>
+      <ul> 
+       <li><a href="../admin-dashboard.html">Dashboard</a></li>
+          <li><a href="../managestudents/manage-students.html">Manage Students</a></li>
+          <li><a href="../manage-teachers/manage-teachers.html">Manage Teachers</a></li>
+          <li><a href="../upload-results/upload-results.html">Upload Results</a></li>
+          <li><a href="../messages/send-message.html">Send message</a></li>
+          <li><a href="../academicyear/academic-year.html" >Academic Years</a></li>
+          <li><a href="../fees/fees-management.html">Fees Management</a></li>
+          <li class="logout"><a href="../admin-login.html">Logout</a></li>
+    </nav>
+  </aside>
+
+  <div id="overlay" class="overlay"></div>
+
+  <main class="main-panel">
+    <header class="topbar">
+      <button id="menuToggle" class="menu-toggle">☰</button>
+      <div>Welcome, School Administrator</div>
+    </header>
+
+    <section class="content">
+      <h2>📤 Upload Results</h2>
+      <form id="uploadResultsForm">
+        <div class="input-group">
+          <label for="classSelect">Class</label>
+          <select id="classSelect" name="class" required></select>
+        </div>
+        <div class="input-group">
+          <label for="academicYear">Academic Year</label>
+          <select id="academicYear" name="year" required></select>
+        </div>
+        <div class="input-group">
+          <label for="term">Term</label>
+          <select id="term" name="term" required>
+            <option value="Term 1">Term 1</option>
+            <option value="Term 2">Term 2</option>
+            <option value="Term 3">Term 3</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="pdfFolder">Upload Folder (Student PDFs)</label>
+          <input type="file" id="pdfFolder" name="pdfs" webkitdirectory directory multiple required />
+        </div>
+        <button type="submit" class="login-btn">Upload All PDFs</button>
+        <p id="uploadMessage" class="status-message"></p>
+      </form>
+    </section>
+  </main>
+</div>
+
+<script src="upload-results.js"></script>
+<script>
+  // Sidebar toggle & logout
+  document.getElementById("menuToggle").onclick = () => {
+    document.querySelector(".sidebar").classList.toggle("open");
+    document.getElementById("overlay").classList.toggle("show");
+  };
+  document.getElementById("logoutBtn").onclick = () => {
+    window.location.href = "../../LoginHomepage/LoginHomepage.html";
+  };
+</script>
+</body>
+</html>

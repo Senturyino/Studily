@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studily - Administrator Dashboard</title>
+  <link rel="stylesheet" href="admin-dashboard.css" />
+  <link rel="stylesheet" href="./maincpdashboard.css" />
+</head>
+<body>
+
+  <!-- 🔧 Dashboard Container -->
+  <div class="dashboard-container">
+
+    <!-- 🚀 Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="logo">STUDILY</div>
+      <nav>
+        <ul>
+          <li><a href="admin-dashboard.html" class="active">Dashboard Overview</a></li>
+          <li><a href="managestudents/manage-students.html">Manage Students</a></li>
+          <li> <a href="manage-teachers/manage-teachers.html">Manage Teachers</a></li>
+          <li><a href="upload-results/upload-results.html">Upload Results</a></li>
+          <li><a href="../messages/send-message.html">Send message</a></li>
+          <li><a href="academicyear/academic-year.html" >Academic Years</a></li>
+          <li><a href="fees/fees-management.html">Fees Management</a></li>
+          <li><a class="logout"  href="admin-login.html" id="logoutBtn">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- 🔥 Overlay for Mobile -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- 📊 Main Panel -->
+    <main class="main-panel">
+
+      <!-- 🧭 Topbar -->
+      <header class="topbar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <div>Welcome, School Administrator</div>
+        <span class="student-id">Admin Panel</span>
+      </header>
+
+      <!-- 📋 Dashboard Content -->
+      <section class="content">
+        <h2>Dashboard Overview</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Total Students</h3>
+            <p>--</p>
+            <br>
+          </div>
+          <div class="card-grid">
+          <div class="card">
+            <h3>Fees Collected</h3>
+            <p>--</p>
+            </div>
+            <section class="card">
+              <h3>Quick Access</h3>
+            <div class="quick-access">
+             <a href="./managestudents/manage-students.html" class="quick-card">Manage Students</a>
+             <a href="./upload-results/upload-results.html" class="quick-card">Upload Results</a>
+            <a href="./fees/fees-management.html" class="quick-card">Fees Management</a>
+             <a href="./academicyear/academic-year.html" class="quick-card">Academic Year Setup</a>
+              <a href="./manage-teachers/manage-teachers.html" class="quick-card">Manage Teachers</a>
+              <a href="./messages/send-message.html" class="quick-card">Send Message</a>
+          </div>
+          </section>
+          
+          <div class="card">
+            <h3>Results Uploaded</h3>
+            <p>--</p>
+          </div>
+          <div class="card">
+            <h3>Academic Year</h3>
+            <p>--</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById("menuToggle");
+    const sidebar = document.querySelector(".sidebar");
+    const overlay = document.getElementById("overlay");
+
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("show");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("open");
+      overlay.classList.remove("show");
+    });
+  </script>
+</body>
+</html>

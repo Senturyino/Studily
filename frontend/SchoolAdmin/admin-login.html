@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studily - School Administrator Login</title>
+  <link rel="stylesheet" href="admin-login.css" />
+</head>
+<body>
+
+  <div class="login-wrapper">
+    <div class="login-box">
+      <h1>Studily</h1>
+      <h2>School Administrator Login</h2>
+      <form id="adminLoginForm">
+        <!-- School Category -->
+        <div class="input-group">
+          <label for="schoolCategory">School Category</label>
+          <select id="schoolCategory" name="schoolCategory" required>
+            <option disabled selected>Select category</option>
+            <option value="Primary/JHS">Primary/JHS Schools</option>
+            <option value="SHS">SHS Schools</option>
+          </select>
+        </div>
+
+        <!-- School Dropdown -->
+        <div class="input-group">
+          <label for="adminSchool">Select School</label>
+          <select id="adminSchool" name="adminSchool" required>
+            <option disabled selected>Select school</option>
+          </select>
+        </div>
+
+        <!-- Email -->
+        <div class="input-group">
+          <label for="adminEmail">Email</label>
+          <input type="email" id="adminEmail" name="adminEmail" required />
+        </div>
+
+        <!-- Password -->
+        <div class="input-group">
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" name="adminPassword" required />
+        </div>
+
+        <!-- Forgot Password -->
+        <div class="forgot-password">
+          <a href="../LoginHomepage/resetpage/reset-password.html">Forgot Password?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="login-btn">Login</button>
+
+        <p id="adminLoginError" class="error-message"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin-login.js"></script>
+</body>
+</html>

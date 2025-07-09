@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Send Message to Students</title>
+  <link rel="stylesheet" href="../maincpdashboard.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">Studily</div>
+      <nav>
+        <ul>
+          <li><a href="../admin-dashboard.html">Dashboard</a></li>
+          <li><a href="../managestudents/manage-students.html">Manage Students</a></li>
+          <li><a href="../manage-teachers/manage-teachers.html">Manage Teachers</a></li>
+          <li><a href="../upload-results/upload-results.html">Upload Results</a></li>
+          <li><a href="../messages/send-message.html">Send message</a></li>
+          <li><a href="../academicyear/academic-year.html" >Academic Years</a></li>
+          <li><a href="../fees/fees-management.html">Fees Management</a></li>
+          <li class="logout"><a href="../admin-login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Panel -->
+    <main class="main-panel">
+      <div class="topbar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <div class="student-id">School Administrator</div>
+      </div>
+
+      <div class="content">
+        <h2>Send Message to Students</h2>
+        <form id="messageForm">
+          <div class="input-group">
+            <label for="target">Send To:</label>
+            <select id="target" name="target" required>
+              <option value="">-- Select Target --</option>
+              <option value="all">All Students</option>
+              <option value="class">Specific Class</option>
+              <option value="student">Specific Student</option>
+            </select>
+          </div>
+
+          <div class="input-group" id="classGroup" style="display: none;">
+            <label for="class">Class:</label>
+            <select id="class" name="class"></select>
+          </div>
+
+          <div class="input-group" id="studentGroup" style="display: none;">
+            <label for="student">Student:</label>
+            <select id="student" name="student"></select>
+          </div>
+
+          <div class="input-group">
+            <label for="message">Message:</label>
+            <textarea id="message" rows="4" placeholder="Type your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="login-btn">Send Message</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="send-message.js"></script>
+  <script>
+  // Sidebar Toggle
+  document.getElementById("menuToggle").addEventListener("click", () => {
+    document.querySelector(".sidebar").classList.toggle("open");
+    document.getElementById("overlay").classList.toggle("show");
+  });
+  document.getElementById("overlay").addEventListener("click", () => {
+    document.querySelector(".sidebar").classList.remove("open");
+    document.getElementById("overlay").classList.remove("show");
+  });
+  </script>
+</body>
+</html>

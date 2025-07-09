@@ -1,0 +1,226 @@
+/* -----------------------------------
+🔧 GLOBAL RESET & BASE STYLING
+----------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background: #f5f7fa;
+}
+
+/* -----------------------------------
+🧱 CONTAINER LAYOUT
+----------------------------------- */
+.dashboard-container {
+  display: flex;
+  width: 100%;
+}
+
+/* -----------------------------------
+🚀 SIDEBAR STYLES
+----------------------------------- */
+.sidebar {
+  width: 220px;
+  background: #302b63;
+  color: white;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background 0.3s;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar .logout {
+  color: #ff6961;
+  font-weight: bold;
+}
+
+/* -----------------------------------
+📊 MAIN PANEL
+----------------------------------- */
+.main-panel {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* -----------------------------------
+🧭 TOPBAR / HEADER
+----------------------------------- */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.student-id {
+  background: #302b63;
+  color: white;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* -----------------------------------
+📚 CONTENT SECTION
+----------------------------------- */
+.content h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 2.5rem;
+}
+
+/* -----------------------------------
+💠 DASHBOARD CARD GRID LAYOUT
+----------------------------------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  color: #302b63;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.card p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #444;
+}
+
+/* -----------------------------------
+☰ MENU TOGGLE BUTTON (Mobile)
+----------------------------------- */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #302b63;
+  cursor: pointer;
+}
+
+/* -----------------------------------
+📱 RESPONSIVE STYLES
+----------------------------------- */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 220px;
+    background: #302b63;
+    z-index: 10;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .main-panel {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -----------------------------------
+🌑 OVERLAY BACKDROP (Mobile)
+----------------------------------- */
+.overlay {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+sidebar nav ul li.active a {
+  font-weight: bold;
+  color: #ffd700;
+}

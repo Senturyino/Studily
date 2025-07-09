@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studily - Fees</title>
+  <link rel="stylesheet" href="../dashboard.css" />
+</head>
+<body>
+
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">STUDILY</div>
+      <nav>
+        <ul>
+          <li><a href="../dashboard.html">Dashboard</a></li>
+      <li><a href="../Progrestracker/progress-tracker.html">Progress Tracker</a></li>
+      <li><a href="../CLASSWORK/classwork-homework.html">Classwork<br>Homework</a></li>
+      <li><a href="../results/results.html">Results</a></li>
+      <li><a href="../Attendance/attendance.html">Attendance</a></li>
+      <li><a href="../Fees/fees.html">Fees</a></li>
+      <li id="logoutBtn" class="logout"><a href="../../LoginHomepage/LoginHomepage.HTML">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-panel">
+      <header class="topbar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <div>Welcome, Emmanuel</div>
+        <span class="student-id">ID: STU00123</span>
+      </header>
+
+      <section class="content">
+        <h2>💰 Fees & Payment History</h2>
+        <h3>View all payments and full payment status.</h3>
+
+        <!-- 🔍 Academic Year Filter -->
+        <div class="filter-container">
+          <label for="yearFilter">Select Academic Year:</label>
+          <div class="custom-select-wrapper">
+            <select id="yearFilter">
+              <option disabled selected>Loading academic years...</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 📜 Fee Payment List -->
+        <div id="feesList" class="fees-list">
+          <!-- Records populated here -->
+        </div>
+
+        <!-- ✅ Status -->
+        <div id="paymentStatus" class="fee-status">
+          <!-- Paid/Unpaid text goes here -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="fees.js"></script>
+  <script src="../shared.js"></script>
+</body>
+</html>

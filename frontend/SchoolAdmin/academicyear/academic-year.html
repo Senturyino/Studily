@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Academic Years - Studily Admin</title>
+  <link rel="stylesheet" href="../maincpdashboard.css" />
+</head>
+<body>
+  
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">Studily</div>
+      <nav>
+        <ul>
+          <li><a href="../admin-dashboard.html">Dashboard</a></li>
+          <li><a href="../managestudents/manage-students.html">Manage Students</a></li>
+          <li><a href="../manage-teachers/manage-teachers.html">Manage Teachers</a></li>
+          <li><a href="../upload-results/upload-results.html">Upload Results</a></li>
+          <li><a href="../messages/send-message.html">Send message</a></li>
+          <li><a href="../academicyear/academic-year.html" >Academic Years</a></li>
+          <li><a href="../fees/fees-management.html">Fees Management</a></li>
+          <li class="logout"><a href="../admin-login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Panel -->
+    <main class="main-panel">
+      <div class="topbar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <div class="student-id">School Administrator</div>
+      </div>
+
+      <div class="content">
+        <h2>Manage Academic Years</h2>
+
+        <div class="card">
+          <form id="addYearForm">
+            <label for="newYear">Add New Academic Year (e.g. 2024/2025):</label>
+            <input type="text" id="newYear" name="newYear" placeholder="2024/2025" required />
+            <button type="submit">Add Year</button>
+          </form>
+        </div>
+
+        <table id="academicYearsTable">
+          <thead>
+            <tr>
+              <th>Academic Year</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Academic years will be inserted here dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="academic-year.js"></script>
+  <script>
+  // Sidebar Toggle
+  document.getElementById("menuToggle").addEventListener("click", () => {
+    document.querySelector(".sidebar").classList.toggle("open");
+    document.getElementById("overlay").classList.toggle("show");
+  });
+  document.getElementById("overlay").addEventListener("click", () => {
+    document.querySelector(".sidebar").classList.remove("open");
+    document.getElementById("overlay").classList.remove("show");
+  });
+</script>
+</body>
+</html>

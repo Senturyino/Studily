@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studily - Teacher Login</title>
+  <link rel="stylesheet" href="../SchoolAdmin/admin-login.css" />
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-box">
+      <h1>Teacher Login</h1>
+      <form id="teacherLoginForm">
+        <!-- School Category -->
+        <div class="input-group">
+          <label for="schoolCategory">School Category</label>
+          <select id="schoolCategory" required>
+            <option disabled selected>Select category</option>
+            <option value="Primary/JHS">Primary/JHS Schools</option>
+            <option value="SHS">SHS Schools</option>
+          </select>
+        </div>
+
+        <!-- School Selection -->
+        <div class="input-group">
+          <label for="school">Select School</label>
+          <select id="school" required>
+            <option disabled selected>Loading schools...</option>
+          </select>
+        </div>
+
+        <!-- Email & Password -->
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+        <p class="error-message" id="loginError"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="teacher-login.js"></script>
+</body>
+</html>

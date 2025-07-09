@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studily - Attendance</title>
+  <link rel="stylesheet" href="../dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">STUDILY</div>
+      <nav>
+        <ul>
+         <li><a href="../dashboard.html">Dashboard</a></li>
+      <li><a href="../Progrestracker/progress-tracker.html">Progress Tracker</a></li>
+      <li><a href="../CLASSWORK/classwork-homework.html">Classwork<br>Homework</a></li>
+      <li><a href="../results/results.html">Results</a></li>
+      <li><a href="../Attendance/attendance.html">Attendance</a></li>
+      <li><a href="../Fees/fees.html">Fees</a></li>
+      <li id="logoutBtn" class="logout"><a href="../../LoginHomepage/LoginHomepage.HTML">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Main Panel -->
+    <main class="main-panel">
+      <header class="topbar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <div>Welcome, Emmanuel</div>
+        <span class="student-id">ID: STU00123</span>
+      </header>
+
+      <section class="content">
+        <h2>📅 Attendance Dashboard</h2>
+
+        <!-- Month Dropdown -->
+        <div class="filter-container">
+          <label for="monthSelector">Select Month:</label>
+          <select id="monthSelector">
+            <option disabled selected>Select a month</option>
+            <option value="january">January</option>
+            <option value="february">February</option>
+            <option value="march">March</option>
+            <option value="april">April</option>
+            <option value="may">May</option>
+            <option value="june">June</option>
+            <option value="july">July</option>
+            <option value="august">August</option>
+            <option value="september">September</option>
+            <option value="october">October</option>
+            <option value="november">November</option>
+            <option value="december">December</option>
+          </select>
+        </div>
+
+        <!-- Attendance UI -->
+        <div id="attendanceDisplay" class="attendance-weeks">
+          <!-- Attendance data will render here -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="attendance.js"></script>
+  <script src="../shared.js"></script>
+</body>
+</html>

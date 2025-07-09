@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fees Management - School Administrator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../maincpdashboard.css" />
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">STUDILY</div>
+    <nav>
+      <ul>
+         <li><a href="../admin-dashboard.html">Dashboard</a></li>
+          <li><a href="../managestudents/manage-students.html">Manage Students</a></li>
+          <li><a href="../manage-teachers/manage-teachers.html">Manage Teachers</a></li>
+          <li><a href="../upload-results/upload-results.html">Upload Results</a></li>
+          <li><a href="../messages/send-message.html">Send message</a></li>
+          <li><a href="../academicyear/academic-year.html" >Academic Years</a></li>
+          <li><a href="../fees/fees-management.html">Fees Management</a></li>
+          <li class="logout"><a href="../admin-login.html">Logout</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-panel">
+    <header class="topbar">
+      <button id="menuToggle" class="menu-toggle">☰</button>
+      <div>Welcome, School Administrator</div>
+    </header>
+
+    <section class="content">
+      <h2>💰 Fees Management</h2>
+
+      <!-- Academic Year Fee Setup -->
+      <div class="cw-hw-section">
+        <h3>Set Academic Year Fee</h3>
+        <form id="setFeeForm">
+          <div class="filter-container">
+            <label for="feeYear">Academic Year</label>
+            <select id="feeYear" required></select>
+
+            <label for="feeAmount">Amount (GHS)</label>
+            <input type="number" id="feeAmount" placeholder="Enter amount" required />
+
+            <button type="submit" class="login-btn">Save Fee</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Fee Records Section -->
+      <div class="cw-hw-section">
+        <h3>Student Fee Records</h3>
+
+        <div class="filter-container">
+          <label for="classFilter">Filter by Class</label>
+          <select id="classFilter">
+            <option disabled selected>Loading...</option>
+          </select>
+        </div>
+
+        <div id="feeRecordsContainer"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Scripts -->
+<script src="fees-management.js"></script>
+<script>
+  // Sidebar toggle & logout
+  document.getElementById("menuToggle").onclick = () => {
+    document.querySelector(".sidebar").classList.toggle("open");
+    document.getElementById("overlay").classList.toggle("show");
+  };
+  document.getElementById("logoutBtn").onclick = () => {
+    window.location.href = "../../LoginHomepage/LoginHomepage.html";
+  };
+</script>
+</body>
+</html>

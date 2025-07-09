@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Teachers - School Administrator</title>
+  <link rel="stylesheet" href="../maincpdashboard.css" />
+  <link rel="stylesheet" href="manage-teachers.css" />
+</head>
+<body>
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="logo">STUDILY</div>
+    <nav>
+      <ul>
+         <li><a href="../admin-dashboard.html">Dashboard</a></li>
+          <li><a href="../managestudents/manage-students.html">Manage Students</a></li>
+          <li><a href="../manage-teachers/manage-teachers.html">Manage Teachers</a></li>
+          <li><a href="../upload-results/upload-results.html">Upload Results</a></li>
+          <li><a href="../messages/send-message.html">Send message</a></li>
+          <li><a href="../academicyear/academic-year.html" >Academic Years</a></li>
+          <li><a href="../fees/fees-management.html">Fees Management</a></li>
+          <li class="logout"><a href="../admin-login.html">Logout</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-panel">
+    <header class="topbar">
+      <button id="menuToggle" class="menu-toggle">☰</button>
+      <div>Welcome, School Administrator</div>
+    </header>
+
+    <section class="content">
+      <h2>👩‍🏫 Manage Teachers</h2>
+      <button id="addTeacherBtn" class="login-btn">+ Add Teacher</button>
+      <div id="teacherTableContainer"></div>
+    </section>
+  </main>
+</div>
+
+<div id="teacherPopup" class="overlay">
+  <div class="popup-box">
+    <h3 id="popupTitle">Add Teacher</h3>
+    <form id="teacherForm">
+      <div class="input-group">
+        <label for="teacherName">Full Name</label>
+        <input type="text" id="teacherName" required />
+      </div>
+      <div class="input-group">
+        <label for="teacherEmail">Email</label>
+        <input type="email" id="teacherEmail" required />
+      </div>
+      <div class="input-group">
+        <label for="teacherPassword">Password</label>
+        <input type="password" id="teacherPassword" required />
+      </div>
+      <div class="input-group">
+        <label for="teacherSubject">Subject</label>
+        <input type="text" id="teacherSubject" required />
+      </div>
+      <button type="submit" class="login-btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+<script src="manage-teachers.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.querySelector(".sidebar");
+    const overlay = document.getElementById("overlay");
+
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("show");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("open");
+      overlay.classList.remove("show");
+    });
+  });
+</script>
+</body>
+</html>

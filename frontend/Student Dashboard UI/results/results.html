@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studily - Results</title>
+  <link rel="stylesheet" href="../dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">STUDILY</div>
+      <nav>
+        <ul>
+         <li><a href="../dashboard.html">Dashboard</a></li>
+      <li><a href="../Progrestracker/progress-tracker.html">Progress Tracker</a></li>
+      <li><a href="../CLASSWORK/classwork-homework.html">Classwork<br>Homework</a></li>
+      <li><a href="../results/results.html">Results</a></li>
+      <li><a href="../Attendance/attendance.html">Attendance</a></li>
+      <li><a href="../Fees/fees.html">Fees</a></li>
+      <li id="logoutBtn" class="logout"><a href="../../LoginHomepage/LoginHomepage.HTML">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Main Panel -->
+    <main class="main-panel">
+      <header class="topbar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <div>Welcome, Emmanuel</div>
+        <span class="student-id">ID: STU00123</span>
+      </header>
+
+      <section class="content">
+        <h2>📄 Academic Results</h2>
+        <p>Select an academic year to view your result PDF.</p>
+
+        <!-- Dropdown Filter -->
+        <div class="filter-container">
+          <label for="yearFilter">Academic Year:</label>
+          <select id="yearFilter">
+            <option disabled selected>Loading academic years...</option>
+          </select>
+        </div>
+
+        <!-- PDF Viewer -->
+        <div id="pdfContainer" class="pdf-container">
+          <p style="color: #999;">Please select a year to view your result PDF.</p>
+        </div>
+        <!-- 📥 Action Buttons -->
+<div id="pdfActions" class="pdf-actions" style="display: none;">
+  <button id="downloadBtn">⬇️ Download PDF</button>
+  <button id="printBtn">🖨️ Print PDF</button>
+  <button id="shareBtn">📤 Share PDF</button>
+</div>
+      </section>
+    </main>
+  </div>
+
+  <script src="results.js"></script>
+  <script src="../shared.js"></script>
+</body>
+</html>

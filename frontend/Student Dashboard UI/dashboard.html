@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 🌐 Meta Configuration -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- 📄 Page Title -->
+  <title>Studily - Dashboard</title>
+
+  <!-- 🎨 External Styles -->
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+  <!-- 🧱 Main Dashboard Container -->
+  <div class="dashboard-container">
+
+    <!-- 🚀 Sidebar Navigation Panel -->
+    <aside class="sidebar">
+      <!-- 🎓 Brand Logo -->
+      <div class="logo">STUDILY</div>
+
+      <!-- 📌 Navigation Menu -->
+      <nav>
+        <ul>
+      <li><a href="./dashboard.html">Dashboard</a></li>
+      <li><a href="./Progrestracker/progress-tracker.html">Progress Tracker</a></li>
+      <li><a href="./CLASSWORK/classwork-homework.html">Classwork<br>Homework</a></li>
+      <li><a href="./results/results.html">Results</a></li>
+      <li><a href="./Attendance/attendance.html">Attendance</a></li>
+      <li><a href="./Fees/fees.html">Fees</a></li>
+      <li id="logoutBtn" class="logout"><a href="../LoginHomepage/LoginHomepage.HTML">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- 🔥 Overlay for Mobile Toggle -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- 📊 Main Content Panel -->
+    <main class="main-panel">
+
+      <!-- 🧭 Top Navigation Bar -->
+      <header class="topbar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <div>Welcome, Emmanuel</div>
+        <span class="student-id">ID: STU00123</span>
+      </header>
+
+      <!-- 📚 Dashboard Overview Content -->
+      <section class="content">
+
+        <!-- 👥 Student Table -->
+        <h2>Dashboard Overview</h2>
+        <h3>📚 Student Records</h3>
+        <table id="studentsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Full Name</th>
+              <th>Student ID</th>
+              <th>Class</th>
+              <th>Email</th>
+              <th>School</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Students will be inserted here by JS -->
+          </tbody>
+        </table>
+        <h2 >Quick Access</h2>
+        <div class="quick-access">
+      <a href="./Attendance/attendance.html" class="quick-card">View Attendance</a>
+      <a href="./CLASSWORK/classwork-homework.html" class="quick-card">Classwork / Homework</a>
+      <a href="./results/results.html" class="quick-card">View Results</a>
+      <a href="./Fees/fees.html" class="quick-card">Fees Information</a>
+      <a href="./Progrestracker/progress-tracker.html" class="quick-card">Progress Tracker</a>
+      </div>
+      <br>
+        <!-- 🧾 Students Misc. Section -->
+        <h3 class="cardheaders">Students Misc.</h3>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Attendance</h3>
+          </div>
+          <div class="card">
+            <h3>Fees Status</h3>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- 🧠 JavaScript (sidebar toggle, logout, etc.) -->
+  <script src="dashboard.js"></script>
+</body>
+</html>

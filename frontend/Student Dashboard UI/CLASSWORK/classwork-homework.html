@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studily - Classwork & Homework</title>
+  <link rel="stylesheet" href="../dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">STUDILY</div>
+      <nav>
+        <ul>
+          <li><a href="../dashboard.html">Dashboard</a></li>
+      <li><a href="../Progrestracker/progress-tracker.html">Progress Tracker</a></li>
+      <li><a href="../CLASSWORK/classwork-homework.html">Classwork<br>Homework</a></li>
+      <li><a href="../results/results.html">Results</a></li>
+      <li><a href="../Attendance/attendance.html">Attendance</a></li>
+      <li><a href="../Fees/fees.html">Fees</a></li>
+      <li id="logoutBtn" class="logout"><a href="../../LoginHomepage/LoginHomepage.HTML">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Main Panel -->
+    <main class="main-panel">
+      <header class="topbar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <div>Welcome, Emmanuel</div>
+        <span class="student-id">ID: STU00123</span>
+      </header>
+
+      <section class="content">
+        <h2>📘 Classwork & Homework Tracker</h2>
+
+        <!-- Filters -->
+        <div class="filter-container">
+  <label for="yearFilter">Academic Year:</label>
+  <select id="yearFilter">
+    <option disabled selected>Select year</option>
+    
+  </select>
+
+  <label for="monthFilter">Month:</label>
+  <select id="monthFilter">
+    <option disabled selected>Select a month</option>
+    <option value="january">January</option>
+    <option value="february">February</option>
+    <option value="march">March</option>
+    <option value="april">April</option>
+    <option value="may">May</option>
+    <option value="june">June</option>
+    <option value="july">July</option>
+    <option value="august">August</option>
+    <option value="september">September</option>
+    <option value="october">October</option>
+    <option value="november">November</option>
+    <option value="december">December</option>
+  </select>
+
+  <label for="subjectFilter">Subject:</label>
+  <select id="subjectFilter">
+    <option disabled selected>Select subject</option>
+    <!-- dynamically populated when backend is ready -->
+  </select>
+</div>
+
+        <!-- Classwork Section -->
+        <div class="cw-hw-section">
+          <h3>📗 Classwork</h3>
+          <div id="classworkDisplay" class="cw-hw-weeks"></div>
+        </div>
+
+        <!-- Homework Section -->
+        <div class="cw-hw-section">
+          <h3>📙 Homework</h3>
+          <div id="homeworkDisplay" class="cw-hw-weeks"></div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="classwork-homework.js"></script>
+  <script src="../shared.js"></script>
+</body>
+</html>

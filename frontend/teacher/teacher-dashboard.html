@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studily - Teacher Dashboard</title>
+  <link rel="stylesheet" href="../Student Dashboard UI/dashboard.css" />
+  <link rel="stylesheet" href="../SchoolAdmin/maincpdashboard.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">STUDILY</div>
+      <nav>
+        <ul>
+          <li><a href="teacher-dashboard.html" class="active">Dashboard</a></li>
+          <li><a href="Classwork/classwork-entry.html">Classwork & Homework Entry</a></li>
+          <li><a href="teacher attendance/attendance.html">Attendance Management</a></li>
+          <li><a href="login.html" class="logout" id="logoutBtn">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Overlay for mobile -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Main Panel -->
+    <main class="main-panel">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <div>Welcome, Teacher</div>
+        <span class="student-id">ID: TCH001</span>
+      </header>
+
+      <!-- Dashboard Content -->
+      <section class="content">
+        <h2>📋 Dashboard Overview</h2>
+        <div class="card-grid">
+          <div class="quick-access">
+            <h3>Quick Acceess</h3>
+  <a href="./teacher attendance/attendance.html" class="quick-card">Attendance</a>
+  <a href="./Classwork/classwork-entry.html" class="quick-card">Classwork/Homework Entry</a>
+  
+</div>
+          <div class="card">
+            <h3>Classwork Recorded</h3>
+            <p>—</p>
+          </div>
+          <div class="card">
+            <h3>Homework Recorded</h3>
+            <p>—</p>
+          </div>
+          <div class="card">
+            <h3>Attendance Taken</h3>
+            <p>—</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.querySelector(".sidebar");
+    const overlay = document.getElementById("overlay");
+
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("show");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("open");
+      overlay.classList.remove("show");
+    });
+  </script>
+  <script src="../Student Dashboard UI/shared.js"></script>
+</body>
+</html>

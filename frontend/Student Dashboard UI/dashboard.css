@@ -1,0 +1,587 @@
+/* -----------------------------------
+🔧 GLOBAL RESET & BASE STYLING
+----------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background: #f5f7fa;
+}
+
+/* -----------------------------------
+🧱 CONTAINER LAYOUT
+----------------------------------- */
+.dashboard-container {
+  display: flex;
+  width: 100%;
+}
+
+/* -----------------------------------
+🚀 SIDEBAR STYLES
+----------------------------------- */
+.sidebar {
+  width: 220px;
+  background: #302b63;
+  color: white;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav ul li {
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: background 0.3s;
+}
+
+.sidebar nav ul li:hover,
+.sidebar nav ul li.active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar .logout {
+  margin-top: 2rem;
+  color: #ff6961;
+}
+
+/* -----------------------------------
+📊 MAIN PANEL
+----------------------------------- */
+.main-panel {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* -----------------------------------
+🧭 TOPBAR / HEADER
+----------------------------------- */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.student-id {
+  background: #302b63;
+  color: white;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+quick-access {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.quick-access .quick-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #302b63;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+}
+
+.quick-access .quick-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  background-color: #f0f0ff;
+}
+
+/* -----------------------------------
+📚 CONTENT SECTION
+----------------------------------- */
+.content h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 3rem;
+}
+
+.content h3 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 2rem;
+}
+
+.cardheaders {
+  color: #302b63;
+  margin-bottom: 1rem;
+}
+
+/* -----------------------------------
+💠 DASHBOARD CARD GRID LAYOUT
+----------------------------------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+/* 🧾 INDIVIDUAL CARD STYLING */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: left;
+  transition: transform 0.2s;
+  margin-bottom: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  color: #302b63;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* -----------------------------------
+☰ MENU TOGGLE BUTTON (Mobile)
+----------------------------------- */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #302b63;
+  cursor: pointer;
+}
+
+/* -----------------------------------
+📱 RESPONSIVE STYLES
+----------------------------------- */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 220px;
+    background: #302b63;
+    z-index: 10;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .main-panel {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -----------------------------------
+🌑 OVERLAY BACKDROP (Mobile)
+----------------------------------- */
+.overlay {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* -----------------------------------
+📋 TABLE STYLING
+----------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #302b63;
+  color: #fff;
+  font-weight: bold;
+}
+
+tr:hover {
+  background: #f5f5f5;
+}
+/* -----------------------------------
+🎯 SUBJECT FILTER DROPDOWN STYLING FROM PROGRESS TRACKER
+----------------------------------- */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.filter-container label {
+  font-weight: 600;
+  color: #302b63;
+  font-size: 1rem;
+}
+
+.filter-container select {
+ -moz-appearance: none;
+ -webkit-appearance: none;
+ appearance: none;
+ background-image: none;
+ background-color: #f9f9f9;
+  color: #302b63;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border: 2px solid #d1d1d1;
+  border-radius: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.filter-container select:hover {
+  border-color: #302b63;
+}
+
+.filter-container select:focus {
+  outline: none;
+  border-color: #302b63;
+  box-shadow: 0 0 0 2px rgba(48, 43, 99, 0.2);
+  background-color: #fff;
+}
+/* 🧾 Custom Select Styling */
+.custom-select-wrapper {
+  position: relative;
+  min-width: 200px;
+}
+
+.custom-select-wrapper select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #d1d1d1;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: #302b63;
+  appearance: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.custom-select-wrapper select:hover,
+.custom-select-wrapper select:focus {
+  border-color: #302b63;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(48, 43, 99, 0.2);
+  background-color: #fff;
+}
+
+.custom-select-wrapper::after {
+  content: "▼";
+  font-size: 0.75rem;
+  color: #302b63;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+/* -----------------------------------
+🎨 Choices.js Dropdown Styling
+----------------------------------- */
+.choices {
+  width: 100%;
+  height: 100%;
+  max-height: 60px;
+  max-width: 300px;
+  font-size: 1rem;
+  color: #302b63;
+  border-radius: 1rem;
+  border-style: solid;
+}
+
+.choices__inner {
+  background-color: #f9f9f9;
+  align-self: center;
+  border-radius: 3rem;
+ size-adjust: 1rem;
+  transition: all 0.2s ease;
+}
+
+.choices__inner:focus-within,
+.choices__inner:hover {
+  border-color: #302b63;
+  box-shadow: 0 0 0 2px rgba(48, 43, 99, 0.15);
+}
+
+.choices__list--dropdown {
+  
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background-color: #fff;
+  
+}
+
+.choices__item--selectable {
+  border-radius: 1rem;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.choices__item--selectable:hover {
+  background-color: rgba(48, 43, 99, 0.08);
+}
+
+.choices__placeholder {
+  color: #999;
+
+}
+
+.choices[data-type*="select-one"]::after {
+  border-color: #302b63 transparent transparent;
+}
+/* 🗓️ Attendance Display */
+.attendance-weeks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.attendance-week {
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.attendance-week h4 {
+  margin-bottom: 1rem;
+  color: #302b63;
+}
+
+.attendance-days {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.attendance-day {
+  padding: 0.75rem;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  text-align: center;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.attendance-day.present {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.attendance-day.absent {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* 📘 Classwork/Homework Sections */
+.cw-hw-section {
+  margin-top: 2rem;
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.cw-hw-section h3 {
+  color: #302b63;
+  margin-bottom: 1rem;
+}
+
+.cw-hw-weeks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cw-hw-week {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.cw-hw-week h4 {
+  margin-bottom: 0.8rem;
+  color: #302b63;
+}
+
+.cw-hw-days {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.cw-hw-day {
+  background-color: #eaeaea;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #333;
+}
+/* 📄 PDF Container Styling */
+.pdf-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  min-height: 200px;
+}
+/* action buttons */
+.pdf-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.pdf-actions button {
+  background-color: #302b63;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.pdf-actions button:hover {
+  background-color: #4b45a0;
+}
+/*FEES*/
+.fees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.fees-table th, .fees-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.fees-table th {
+  background: #302b63;
+  color: white;
+}
+
+.fees-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.fee-status {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+}
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background 0.3s;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background: rgba(255, 255, 255, 0.15);
+}

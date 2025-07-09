@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher - Attendance Management</title>
+  <link rel="stylesheet" href="attendance.css" />
+  <link rel="stylesheet" href="../../Student Dashboard UI/dashboard.css" />
+</head>
+<body>
+
+<div class="dashboard-container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">STUDILY</div>
+    <nav>
+      <ul>
+        <li><a href="../teacher-dashboard.html" class="active">Dashboard</a></li>
+          <li><a href="../Classwork/classwork-entry.html">Classwork & Homework Entry</a></li>
+          <li><a href="./attendance.html ">Attendance Management</a></li>
+          <li><a href="../login.html" class="logout" id="logoutBtn">Logout</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Overlay (for mobile sidebar) -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Main Content -->
+  <main class="main-panel">
+    <header class="topbar">
+      <button id="menuToggle" class="menu-toggle">☰</button>
+      <div>Welcome, Teacher</div>
+    </header>
+
+    <section class="content">
+      <h2>📝 Attendance Management</h2>
+      <button class="open-popup-btn" id="openAttendancePopup">Take Attendance</button>
+
+      <!-- Student list will appear here -->
+      <div id="studentListContainer" class="student-list-container hidden"></div>
+
+      <button id="submitAttendanceBtn" class="submit-btn hidden">Submit All Records</button>
+    </section>
+  </main>
+</div>
+
+<!-- Attendance Input Popup -->
+<div id="attendancePopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closePopup">&times;</span>
+    <h3>Enter Attendance Info</h3>
+    <form id="attendanceForm">
+      <label>Class:</label>
+      <select id="classSelect" required></select>
+
+      <label>Day:</label>
+      <select id="daySelect" required>
+        <option value="">Select Day</option>
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+      </select>
+
+      <label>Week:</label>
+      <select id="weekSelect" required>
+        <option value="">Select Week</option>
+        <option>Week 1</option>
+        <option>Week 2</option>
+        <option>Week 3</option>
+        <option>Week 4</option>
+      </select>
+
+      <label>Month:</label>
+      <select id="monthSelect" required>
+        <option value="">Select Month</option>
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+        <option>April</option>
+        <option>May</option>
+        <option>June</option>
+        <option>July</option>
+        <option>August</option>
+        <option>September</option>
+        <option>October</option>
+        <option>November</option>
+        <option>December</option>
+      </select>
+
+      <label>Academic Year:</label>
+      <select id="yearSelect" required></select>
+
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+</div>
+
+<script src="attendance.js"></script>
+<script src=".../Student Dashboard UI/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+
+  <div class="main-panel">
+    <div class="topbar">
+      <button class="menu-toggle">☰</button>
+      <h2>Main Admin Dashboard</h2>
+    </div>
+
+    <div class="content">
+      <section id="add-school-section">
+        <h3>Add a New School</h3>
+        <form id="addSchoolForm">
+          <input type="text" placeholder="School Name" required>
+          <select required>
+            <option value="">Select Category</option>
+            <option value="Primary/JHS">Primary/JHS</option>
+            <option value="SHS">SHS</option>
+          </select>
+          <button type="submit">Add School</button>
+        </form>
+      </section>
+
+      <section id="create-school-admin-section">
+        <h3>Create School Admin</h3>
+        <form id="createSchoolAdminForm">
+          <input type="email" placeholder="Email" required>
+          <input type="text" placeholder="Full Name" required>
+          <select required>
+            <option value="">Select School</option>
+            <!-- Populate from DB -->
+          </select>
+          <button type="submit">Create Admin</button>
+        </form>
+      </section>
+
+      <section id="create-main-admin-section">
+        <h3>Create Another Main Admin</h3>
+        <form id="createMainAdminForm">
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Create Admin</button>
+        </form>
+      </section>
+
+      <section id="delete-admin-section">
+        <h3>Delete Main Admin</h3>
+        <form id="deleteAdminForm">
+          <select required>
+            <option value="">Select Admin to Delete</option>
+            <!-- Populate from DB -->
+          </select>
+          <input type="password" placeholder="Enter Deletion Code" required>
+          <button type="submit">Delete Admin</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
