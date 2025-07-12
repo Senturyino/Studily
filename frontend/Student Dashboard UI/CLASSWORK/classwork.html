@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Classwork - Studily</title>
+    <link rel="stylesheet" href="/frontend/studily-theme.css">
+    <link rel="stylesheet" href="/frontend/sidebar.css">
+    <link rel="stylesheet" href="classwork.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">Student Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../Attendance/attendance.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-check"></i> Attendance
+                </a>
+                <a href="classwork.html" class="sidebar-nav-item active">
+                    <i class="fas fa-book"></i> Classwork
+                </a>
+                <a href="../Fees/fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Fees
+                </a>
+                <a href="../messages/messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="../results/results.html" class="sidebar-nav-item">
+                    <i class="fas fa-chart-line"></i> Results
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">My Classwork</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Student</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <div class="container">
+                    <!-- Header -->
+                    <header class="header">
+                        <div class="header-content">
+                            <h1><i class="fas fa-book-open"></i> My Classwork</h1>
+                            <div class="student-info">
+                                <span id="studentName">Loading...</span>
+                                <span id="studentClass">Loading...</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Statistics Cards -->
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-icon total">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalAssignments">0</h3>
+                                <p>Total Assignments</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon completed">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="completedAssignments">0</h3>
+                                <p>Completed</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon pending">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="pendingAssignments">0</h3>
+                                <p>Pending</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon average">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="averageScore">0%</h3>
+                                <p>Average Score</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="filters-container">
+                        <div class="filter-group">
+                            <label for="statusFilter">Status:</label>
+                            <select id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="graded">Graded</option>
+                                <option value="submitted">Submitted</option>
+                                <option value="late">Late</option>
+                                <option value="missing">Missing</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="subjectFilter">Subject:</label>
+                            <select id="subjectFilter">
+                                <option value="all">All Subjects</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="sortBy">Sort By:</label>
+                            <select id="sortBy">
+                                <option value="due_date">Due Date</option>
+                                <option value="title">Title</option>
+                                <option value="marks">Marks</option>
+                                <option value="status">Status</option>
+                            </select>
+                        </div>
+                        <button id="applyFilters" class="btn btn-primary">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="charts-container">
+                        <div class="chart-card">
+                            <h3>Performance by Subject</h3>
+                            <canvas id="subjectChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Assignment Status Distribution</h3>
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Assignments Grid -->
+                    <div class="assignments-container">
+                        <div class="assignments-header">
+                            <h3>My Assignments</h3>
+                            <div class="view-toggle">
+                                <button id="gridView" class="view-btn active">
+                                    <i class="fas fa-th"></i> Grid
+                                </button>
+                                <button id="listView" class="view-btn">
+                                    <i class="fas fa-list"></i> List
+                                </button>
+                            </div>
+                        </div>
+                        <div id="assignmentsGrid" class="assignments-grid">
+                            <div class="loading-card">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <p>Loading assignments...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Table View -->
+                    <div class="table-container" style="display: none;">
+                        <div class="table-header">
+                            <h3>Assignment Details</h3>
+                            <div class="table-actions">
+                                <button id="exportBtn" class="btn btn-secondary">
+                                    <i class="fas fa-download"></i> Export
+                                </button>
+                                <button id="refreshBtn" class="btn btn-primary">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="assignmentsTable" class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Assignment</th>
+                                        <th>Subject</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th>Marks</th>
+                                        <th>Score</th>
+                                        <th>Feedback</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="assignmentsTableBody">
+                                    <tr>
+                                        <td colspan="7" class="loading">Loading assignments...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Assignment Detail Modal -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Assignment Details</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="assignment-details">
+                    <div class="detail-row">
+                        <label>Title:</label>
+                        <span id="modalTitleText"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Subject:</label>
+                        <span id="modalSubject"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Description:</label>
+                        <p id="modalDescription"></p>
+                    </div>
+                    <div class="detail-row">
+                        <label>Due Date:</label>
+                        <span id="modalDueDate"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Status:</label>
+                        <span id="modalStatus"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Marks Obtained:</label>
+                        <span id="modalMarks"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Total Marks:</label>
+                        <span id="modalTotalMarks"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Score:</label>
+                        <span id="modalScore"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Feedback:</label>
+                        <p id="modalFeedback"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeAssignmentModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading classwork data...</p>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Error</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeErrorModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../sidebar.js"></script>
+    <script src="classwork.js"></script>
+</body>
+</html> 

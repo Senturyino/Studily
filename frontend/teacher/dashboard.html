@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Studily</title>
+    <link rel="stylesheet" href="../studily-theme.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">Teacher Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-nav-item active">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="Classwork/classwork.html" class="sidebar-nav-item">
+                    <i class="fas fa-book"></i> Classwork
+                </a>
+                <a href="teacher attendance/attendance.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-check"></i> Attendance
+                </a>
+                <a href="messages/messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="results/results.html" class="sidebar-nav-item">
+                    <i class="fas fa-chart-line"></i> Results
+                </a>
+                
+               
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Teacher Dashboard</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Teacher</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <h1><i class="fas fa-chalkboard-teacher"></i> Teacher Dashboard</h1>
+                    <p>Manage your classes, assignments, attendance, and communicate with students effectively</p>
+                </div>
+
+                <!-- Teaching Overview -->
+                <div class="card">
+                    <h2><i class="fas fa-chart-bar"></i> Teaching Overview</h2>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Total Students</h3>
+                            <p data-stat="totalStudents">180</p>
+                            <small>Across all classes</small>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>Active Classes</h3>
+                            <p data-stat="activeClasses">6</p>
+                            <small>Classes this semester</small>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h3>Pending Assignments</h3>
+                            <p data-stat="pendingAssignments">12</p>
+                            <small>To be graded</small>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Teaching Hours</h3>
+                            <p data-stat="teachingHours">24</p>
+                            <small>This week</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Communication & Updates -->
+                <div class="card">
+                    <h2><i class="fas fa-bell"></i> Communication & Updates</h2>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>New Messages</h3>
+                            <p data-stat="newMessages">5</p>
+                            <small>Unread messages</small>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h3>Announcements</h3>
+                            <p data-stat="announcements">3</p>
+                            <small>New announcements</small>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3>Upcoming Events</h3>
+                            <p data-stat="upcomingEvents">2</p>
+                            <small>This week</small>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3>Alerts</h3>
+                            <p data-stat="alerts">1</p>
+                            <small>Requires attention</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Management -->
+                <div class="card">
+                    <h2><i class="fas fa-graduation-cap"></i> Academic Management</h2>
+                    <div class="dashboard-grid">
+                        <a href="Classwork/classwork.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>Manage Classwork</h3>
+                            <p>Create and manage assignments, materials, and class resources</p>
+                        </a>
+
+                        <a href="assignments/assignments.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h3>Grade Assignments</h3>
+                            <p>Review and grade student assignments</p>
+                        </a>
+
+                        <a href="results/results.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Upload Results</h3>
+                            <p>Upload and manage student examination results</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3>Performance Analytics</h3>
+                            <p>Analyze student performance and progress</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Classroom Management -->
+                <div class="card">
+                    <h2><i class="fas fa-chalkboard"></i> Classroom Management</h2>
+                    <div class="dashboard-grid">
+                        <a href="teacher attendance/attendance.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <h3>Take Attendance</h3>
+                            <p>Mark student attendance for your classes</p>
+                        </a>
+
+                        <a href="schedule/schedule.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3>View Schedule</h3>
+                            <p>Check your class schedule and timetables</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Class Lists</h3>
+                            <p>View and manage student class lists</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h3>Class Reports</h3>
+                            <p>Generate class performance reports</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Communication Tools -->
+                <div class="card">
+                    <h2><i class="fas fa-comments"></i> Communication Tools</h2>
+                    <div class="dashboard-grid">
+                        <a href="messages/messages.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Send Messages</h3>
+                            <p>Communicate with students and parents</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h3>Announcements</h3>
+                            <p>Send announcements to your classes</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Parent Contact</h3>
+                            <p>Contact parents and guardians</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-plus"></i>
+                            </div>
+                            <h3>Meeting Scheduler</h3>
+                            <p>Schedule parent-teacher meetings</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card">
+                    <h2><i class="fas fa-clock"></i> Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Attendance Marked</h4>
+                                <p>Attendance marked for Class 10A Mathematics</p>
+                                <small>2 hours ago</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Assignment Created</h4>
+                                <p>New assignment uploaded for Class 9B</p>
+                                <small>1 day ago</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Message Sent</h4>
+                                <p>Reminder sent to Class 11 students</p>
+                                <small>2 days ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today's Schedule -->
+                <div class="card">
+                    <h2><i class="fas fa-calendar-day"></i> Today's Schedule</h2>
+                    <div class="schedule-list">
+                        <div class="schedule-item">
+                            <div class="schedule-time">08:00 - 09:00</div>
+                            <div class="schedule-content">
+                                <h4>Class 10A - Mathematics</h4>
+                                <p>Room 201</p>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">09:15 - 10:15</div>
+                            <div class="schedule-content">
+                                <h4>Class 9B - Mathematics</h4>
+                                <p>Room 203</p>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">10:30 - 11:30</div>
+                            <div class="schedule-content">
+                                <h4>Class 11A - Advanced Math</h4>
+                                <p>Room 205</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

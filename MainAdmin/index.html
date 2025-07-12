@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Admin Panel - Studily</title>
+  <link rel="stylesheet" href="../frontend/studily-theme.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../Studily Logo.png">
+</head>
+<body>
+  
+  <!-- Authentication Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-shield-alt"></i> Main Admin Authentication</h2>
+      </div>
+      <div class="modal-body">
+        <form id="authForm">
+          <div class="input-group">
+            <label for="adminEmail">Admin Email</label>
+            <input type="email" id="adminEmail" required>
+          </div>
+          <div class="input-group">
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminPassword" required>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+        </form>
+        <div id="authError" class="error-message"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Admin Panel (Hidden until authenticated) -->
+  <div id="mainPanel" class="main-panel" style="display: none;">
+    <!-- Studily Brand Header -->
+    <div class="brand-header">
+      <h1 class="brand-title">Studily</h1>
+      <p class="brand-subtitle">Main Administration Panel</p>
+      <div class="admin-info">
+        <span id="currentAdmin">Logged in as: <span id="adminName">Admin</span></span>
+        <button id="logoutBtn" class="btn btn-secondary">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- School Management Section -->
+      <section id="add-school-section" class="admin-section">
+        <h3><i class="fas fa-school"></i> Add a New School</h3>
+        <form id="addSchoolForm">
+          <div class="form-row">
+            <div class="input-group">
+              <label for="schoolName">School Name</label>
+              <input type="text" id="schoolName" placeholder="Enter school name" required>
+            </div>
+            <div class="input-group">
+              <label for="schoolCategory">School Category</label>
+              <select id="schoolCategory" required>
+                <option value="">Select Category</option>
+                <option value="Primary/JHS">Primary/JHS</option>
+                <option value="SHS">SHS</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label for="schoolLocation">Location</label>
+              <input type="text" id="schoolLocation" placeholder="School location" required>
+            </div>
+            <div class="input-group">
+              <label for="schoolContact">Contact Number</label>
+              <input type="tel" id="schoolContact" placeholder="Contact number" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add School
+          </button>
+        </form>
+        <div id="schoolSuccess" class="success-message"></div>
+        <div id="schoolError" class="error-message"></div>
+      </section>
+
+      <!-- Create School Admin Section -->
+      <section id="create-school-admin-section" class="admin-section">
+        <h3><i class="fas fa-user-shield"></i> Create School Admin Account</h3>
+        <form id="createSchoolAdminForm">
+          <div class="form-row">
+            <div class="input-group">
+              <label for="schoolAdminEmail">Email Address</label>
+              <input type="email" id="schoolAdminEmail" placeholder="admin@school.com" required>
+            </div>
+            <div class="input-group">
+              <label for="schoolAdminName">Full Name</label>
+              <input type="text" id="schoolAdminName" placeholder="Full name" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label for="schoolAdminPassword">Password</label>
+              <input type="password" id="schoolAdminPassword" placeholder="Password" required>
+            </div>
+            <div class="input-group">
+              <label for="schoolSelect">Select School</label>
+              <select id="schoolSelect" required>
+                <option value="">Select School</option>
+                <!-- Populated from database -->
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i> Create School Admin
+          </button>
+        </form>
+        <div id="schoolAdminSuccess" class="success-message"></div>
+        <div id="schoolAdminError" class="error-message"></div>
+      </section>
+
+      <!-- Create Main Admin Section -->
+      <section id="create-main-admin-section" class="admin-section">
+        <h3><i class="fas fa-user-cog"></i> Create Another Main Admin</h3>
+        <form id="createMainAdminForm">
+          <div class="form-row">
+            <div class="input-group">
+              <label for="mainAdminEmail">Email Address</label>
+              <input type="email" id="mainAdminEmail" placeholder="admin@studily.com" required>
+            </div>
+            <div class="input-group">
+              <label for="mainAdminName">Full Name</label>
+              <input type="text" id="mainAdminName" placeholder="Full name" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label for="mainAdminPassword">Password</label>
+              <input type="password" id="mainAdminPassword" placeholder="Password" required>
+            </div>
+            <div class="input-group">
+              <label for="mainAdminAuthCode">Authentication Code</label>
+              <input type="password" id="mainAdminAuthCode" placeholder="Enter 'IAMGOD'" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i> Create Main Admin
+          </button>
+        </form>
+        <div id="mainAdminSuccess" class="success-message"></div>
+        <div id="mainAdminError" class="error-message"></div>
+      </section>
+
+      <!-- Delete Admin Section -->
+      <section id="delete-admin-section" class="admin-section">
+        <h3><i class="fas fa-user-times"></i> Delete Admin Account</h3>
+        <form id="deleteAdminForm">
+          <div class="form-row">
+            <div class="input-group">
+              <label for="deleteAdminType">Account Type</label>
+              <select id="deleteAdminType" required>
+                <option value="">Select Account Type</option>
+                <option value="main">Main Admin</option>
+                <option value="school">School Admin</option>
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="deleteAdminSelect">Select Account</label>
+              <select id="deleteAdminSelect" required>
+                <option value="">Select account to delete</option>
+                <!-- Populated based on type -->
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label for="deleteAuthCode">Authentication Code</label>
+              <input type="password" id="deleteAuthCode" placeholder="Enter 'iam0nmeth'" required>
+            </div>
+            <div class="input-group">
+              <label for="confirmDelete">Confirm Deletion</label>
+              <input type="text" id="confirmDelete" placeholder="Type 'DELETE' to confirm" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-danger">
+            <i class="fas fa-trash"></i> Delete Account
+          </button>
+        </form>
+        <div id="deleteSuccess" class="success-message"></div>
+        <div id="deleteError" class="error-message"></div>
+      </section>
+
+      <!-- System Overview -->
+      <section id="system-overview" class="admin-section">
+        <h3><i class="fas fa-chart-bar"></i> System Overview</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-school"></i>
+            </div>
+            <div class="stat-content">
+              <h4>Total Schools</h4>
+              <p id="totalSchools">0</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="stat-content">
+              <h4>School Admins</h4>
+              <p id="totalSchoolAdmins">0</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-user-cog"></i>
+            </div>
+            <div class="stat-content">
+              <h4>Main Admins</h4>
+              <p id="totalMainAdmins">0</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-content">
+              <h4>Total Users</h4>
+              <p id="totalUsers">0</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Student Statistics -->
+      <section id="student-statistics" class="admin-section">
+        <h3><i class="fas fa-user-graduate"></i> Student Statistics</h3>
+        
+        <!-- Overall Student Stats -->
+        <div class="stats-overview">
+          <div class="stat-row">
+            <div class="stat-item">
+              <div class="stat-icon-large">
+                <i class="fas fa-user-graduate"></i>
+              </div>
+              <div class="stat-details">
+                <h4>Total Students (All Schools)</h4>
+                <p id="totalStudentsAll">0</p>
+                <small>Across all registered schools</small>
+              </div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon-large">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="stat-details">
+                <h4>Average Students per School</h4>
+                <p id="avgStudentsPerSchool">0</p>
+                <small>Based on total schools</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- School-Specific Student Stats -->
+        <div class="school-stats-container">
+          <h4><i class="fas fa-search"></i> View Students by School</h4>
+          <div class="school-selector">
+            <div class="input-group">
+              <label for="schoolStatsSelect">Select School</label>
+              <select id="schoolStatsSelect">
+                <option value="">Choose a school to view student statistics</option>
+                <!-- Populated from database -->
+              </select>
+            </div>
+            <button id="loadSchoolStats" class="btn btn-primary" disabled>
+              <i class="fas fa-chart-bar"></i> Load Statistics
+            </button>
+          </div>
+
+          <!-- Selected School Stats -->
+          <div id="selectedSchoolStats" class="selected-school-stats" style="display: none;">
+            <div class="school-info">
+              <h5 id="selectedSchoolName">School Name</h5>
+              <p id="selectedSchoolDetails">Category • Location</p>
+            </div>
+            
+            <div class="student-stats-grid">
+              <div class="student-stat-card">
+                <div class="stat-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-content">
+                  <h4>Total Students</h4>
+                  <p id="schoolTotalStudents">0</p>
+                </div>
+              </div>
+              <div class="student-stat-card">
+                <div class="stat-icon">
+                  <i class="fas fa-male"></i>
+                </div>
+                <div class="stat-content">
+                  <h4>Male Students</h4>
+                  <p id="schoolMaleStudents">0</p>
+                </div>
+              </div>
+              <div class="student-stat-card">
+                <div class="stat-icon">
+                  <i class="fas fa-female"></i>
+                </div>
+                <div class="stat-content">
+                  <h4>Female Students</h4>
+                  <p id="schoolFemaleStudents">0</p>
+                </div>
+              </div>
+              <div class="student-stat-card">
+                <div class="stat-icon">
+                  <i class="fas fa-percentage"></i>
+                </div>
+                <div class="stat-content">
+                  <h4>Gender Ratio</h4>
+                  <p id="schoolGenderRatio">0%</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Student List -->
+            <div class="student-list-container">
+              <div class="list-header">
+                <h5>Student List</h5>
+                <div class="list-actions">
+                  <button id="exportStudentList" class="btn btn-secondary">
+                    <i class="fas fa-download"></i> Export List
+                  </button>
+                  <button id="refreshStudentList" class="btn btn-primary">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                  </button>
+                </div>
+              </div>
+              
+              <div class="student-list-wrapper">
+                <table id="studentListTable" class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Student ID</th>
+                      <th>Name</th>
+                      <th>Class</th>
+                      <th>Gender</th>
+                      <th>Contact</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="studentListBody">
+                    <tr>
+                      <td colspan="6" class="loading">Loading students...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="pagination">
+                <button id="prevStudentPage" class="btn btn-secondary" disabled>
+                  <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <span id="studentPageInfo">Page 1 of 1</span>
+                <button id="nextStudentPage" class="btn btn-secondary" disabled>
+                  Next <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

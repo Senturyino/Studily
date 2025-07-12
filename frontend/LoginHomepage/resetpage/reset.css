@@ -1,0 +1,308 @@
+/* -----------------------------------
+🔧 GLOBAL RESET & BASE STYLING
+----------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* -----------------------------------
+🎓 STUDILY BRAND HEADER
+----------------------------------- */
+.studily-brand {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  animation: fadeDown 0.6s ease-out;
+}
+
+.brand-title {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.brand-subtitle {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin: 10px 0 0 0;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* 👇 Banner entrance animation */
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -----------------------------------
+📦 RESET PASSWORD FORM CONTAINER
+----------------------------------- */
+.reset-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* -----------------------------------
+📝 FORM HEADINGS & TAGLINE
+----------------------------------- */
+.reset-form h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    font-weight: 600;
+}
+
+.tagline {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* -----------------------------------
+🖊️ FORM LABELS & INPUT FIELDS
+----------------------------------- */
+.reset-form label {
+  display: block;
+  margin-top: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.reset-form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 0.25rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+/* -----------------------------------
+🟦 SUBMIT BUTTON
+----------------------------------- */
+.reset-form button {
+    width: 100%;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.reset-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/* -----------------------------------
+🔗 LOGIN REDIRECT LINK
+----------------------------------- */
+.login-link {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.login-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.login-link a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* -----------------------------------
+✅ SUCCESS FEEDBACK MESSAGE
+----------------------------------- */
+.success-message {
+  margin-top: 1rem;
+  color: green;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .studily-brand {
+    margin-bottom: 1rem;
+  }
+  
+  .brand-title {
+    font-size: 3rem;
+    letter-spacing: 2px;
+  }
+  
+  .brand-subtitle {
+    font-size: 1rem;
+  }
+  
+  .reset-container {
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
+  }
+  
+  .reset-form h2 {
+    font-size: 1.5rem;
+  }
+  
+  .tagline {
+    font-size: 0.9rem;
+  }
+  
+  .reset-form input {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+  
+  .reset-form button {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+  
+  .login-link {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  .studily-brand {
+    margin-bottom: 0.8rem;
+  }
+  
+  .brand-title {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .brand-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .reset-container {
+    padding: 1.2rem;
+  }
+  
+  .reset-form h2 {
+    font-size: 1.3rem;
+  }
+  
+  .tagline {
+    font-size: 0.85rem;
+  }
+  
+  .reset-form input {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  .reset-form button {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  .login-link {
+    font-size: 0.8rem;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .reset-container {
+    max-width: 450px;
+    padding: 2.5rem;
+  }
+  
+  .brand-title {
+    font-size: 4rem;
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1201px) {
+  .reset-container {
+    max-width: 500px;
+    padding: 3rem;
+  }
+  
+  .brand-title {
+    font-size: 4.5rem;
+  }
+}
+
+/* Landscape Mobile Styles */
+@media (max-width: 768px) and (orientation: landscape) {
+  body {
+    height: auto;
+    padding: 10px;
+  }
+  
+  .studily-brand {
+    margin-bottom: 0.5rem;
+  }
+  
+  .brand-title {
+    font-size: 2.5rem;
+  }
+  
+  .reset-container {
+    margin: 10px 0;
+  }
+}

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepare Results - Studily</title>
+    <link rel="stylesheet" href="../../studily-theme.css">
+    <link rel="stylesheet" href="../../sidebar.css">
+    <link rel="stylesheet" href="prepare-results.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">School Administration</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../managestudents/Manage-students.html" class="sidebar-nav-item">
+                    <i class="fas fa-user-graduate"></i> Manage Students
+                </a>
+                <a href="../manage-teachers/manage-teachers.html" class="sidebar-nav-item">
+                    <i class="fas fa-chalkboard-teacher"></i> Manage Teachers
+                </a>
+                <a href="../Class/manage-classes.html" class="sidebar-nav-item">
+                    <i class="fas fa-school"></i> Manage Classes
+                </a>
+                <a href="../fees/manage-fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Manage Fees
+                </a>
+                <a href="../academicyear/manage-academic-years.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-alt"></i> Academic Years
+                </a>
+                <a href="../upload-results/upload-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-upload"></i> Upload Results
+                </a>
+                <a href="prepare-results.html" class="sidebar-nav-item active">
+                    <i class="fas fa-calculator"></i> Prepare Results
+                </a>
+                <a href="../messages/manage-messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Prepare Results</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Administrator</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Page Header -->
+                <div class="card">
+                    <div class="page-header">
+                        <h1><i class="fas fa-calculator"></i> Prepare Semester Results</h1>
+                        <p>Compile individual student records across all subjects, set grading systems, and generate PDF results using school templates.</p>
+                    </div>
+                </div>
+
+                <!-- Step 1: Class and Semester Selection -->
+                <div class="card">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h3><i class="fas fa-list"></i> Select Class and Semester</h3>
+                    </div>
+                    <div class="selection-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="classSelect">Select Class *</label>
+                                <select id="classSelect" required>
+                                    <option value="">Choose a class...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="semesterSelect">Select Semester *</label>
+                                <select id="semesterSelect" required>
+                                    <option value="">Choose semester...</option>
+                                    <option value="First Semester">First Semester</option>
+                                    <option value="Second Semester">Second Semester</option>
+                                    <option value="Third Semester">Third Semester</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="academicYearSelect">Academic Year *</label>
+                                <select id="academicYearSelect" required>
+                                    <option value="">Choose academic year...</option>
+                                    <option value="2023-2024">2023-2024</option>
+                                    <option value="2024-2025">2024-2025</option>
+                                    <option value="2025-2026">2025-2026</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" id="loadStudentsBtn">
+                                <i class="fas fa-users"></i> Load Students
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Grading System Configuration -->
+                <div class="card" id="gradingSystemCard" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h3><i class="fas fa-cog"></i> Configure Grading System</h3>
+                    </div>
+                    <div class="grading-config">
+                        <div class="weighting-section">
+                            <h4>Component Weighting (Per Subject)</h4>
+                            <div class="weighting-grid">
+                                <div class="weight-item">
+                                    <label>Classwork/Assignment</label>
+                                    <div class="weight-input">
+                                        <input type="number" id="classworkWeight" value="30" min="0" max="100">
+                                        <span class="unit">%</span>
+                                    </div>
+                                </div>
+                                <div class="weight-item">
+                                    <label>Midterm/Midsem</label>
+                                    <div class="weight-input">
+                                        <input type="number" id="midtermWeight" value="20" min="0" max="100">
+                                        <span class="unit">%</span>
+                                    </div>
+                                </div>
+                                <div class="weight-item">
+                                    <label>End of Term</label>
+                                    <div class="weight-input">
+                                        <input type="number" id="endtermWeight" value="50" min="0" max="100">
+                                        <span class="unit">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="total-weight">
+                                <span>Total: <span id="totalWeight">100</span>%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="grade-scale-section">
+                            <h4>Grade Scale Configuration</h4>
+                            <div class="grade-scale-grid">
+                                <div class="grade-item">
+                                    <label>Grade A (90-100%)</label>
+                                    <input type="number" id="gradeAMin" value="90" min="0" max="100">
+                                    <span>-</span>
+                                    <input type="number" id="gradeAMax" value="100" min="0" max="100">
+                                </div>
+                                <div class="grade-item">
+                                    <label>Grade B (80-89%)</label>
+                                    <input type="number" id="gradeBMin" value="80" min="0" max="100">
+                                    <span>-</span>
+                                    <input type="number" id="gradeBMax" value="89" min="0" max="100">
+                                </div>
+                                <div class="grade-item">
+                                    <label>Grade C (70-79%)</label>
+                                    <input type="number" id="gradeCMin" value="70" min="0" max="100">
+                                    <span>-</span>
+                                    <input type="number" id="gradeCMax" value="79" min="0" max="100">
+                                </div>
+                                <div class="grade-item">
+                                    <label>Grade D (60-69%)</label>
+                                    <input type="number" id="gradeDMin" value="60" min="0" max="100">
+                                    <span>-</span>
+                                    <input type="number" id="gradeDMax" value="69" min="0" max="100">
+                                </div>
+                                <div class="grade-item">
+                                    <label>Grade F (0-59%)</label>
+                                    <input type="number" id="gradeFMin" value="0" min="0" max="100">
+                                    <span>-</span>
+                                    <input type="number" id="gradeFMax" value="59" min="0" max="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Student Results Compilation -->
+                <div class="card" id="studentResultsCard" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h3><i class="fas fa-table"></i> Student Results Compilation (All Subjects)</h3>
+                    </div>
+                    <div class="results-compilation">
+                        <div class="compilation-header">
+                            <div class="class-info">
+                                <h4 id="classNameDisplay">Class: <span>-</span></h4>
+                                <p id="studentCountDisplay">Students: <span>-</span></p>
+                                <p id="subjectsCountDisplay">Subjects: <span>-</span></p>
+                            </div>
+                            <div class="compilation-actions">
+                                <button class="btn btn-secondary" id="importDataBtn">
+                                    <i class="fas fa-download"></i> Import Data
+                                </button>
+                                <button class="btn btn-primary" id="calculateResultsBtn">
+                                    <i class="fas fa-calculator"></i> Calculate Results
+                                </button>
+                                <button class="btn btn-success" id="showGenerateSectionBtn">
+                                    <i class="fas fa-arrow-right"></i> Go to Generate Results
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="results-table-container">
+                            <div class="table-filters">
+                                <input type="text" id="studentSearch" placeholder="Search students...">
+                                <select id="gradeFilter">
+                                    <option value="">All Grades</option>
+                                    <option value="A">Grade A</option>
+                                    <option value="B">Grade B</option>
+                                    <option value="C">Grade C</option>
+                                    <option value="D">Grade D</option>
+                                    <option value="F">Grade F</option>
+                                </select>
+                            </div>
+                            
+                            <div class="table-wrapper">
+                                <table id="resultsTable" class="results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Student ID</th>
+                                            <th>Student Name</th>
+                                            <th>Total Score (All Subjects)</th>
+                                            <th>Average Percentage</th>
+                                            <th>Overall Grade</th>
+                                            <th>Position</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="resultsTableBody">
+                                        <!-- Student results will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: PDF Template Upload -->
+                <div class="card" id="templateCard" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h3><i class="fas fa-file-pdf"></i> Upload School Results Template</h3>
+                    </div>
+                    <div class="template-upload">
+                        <div class="upload-area" id="templateUploadArea">
+                            <div class="upload-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <p class="upload-text">Click to select school results template PDF</p>
+                            <p class="upload-hint">This template will be used to generate individual student results with all subjects</p>
+                            <input type="file" id="templateFile" accept=".pdf" style="display: none;">
+                        </div>
+                        <div id="templatePreview" class="template-preview" style="display: none;">
+                            <h4>Template Preview</h4>
+                            <div class="preview-info">
+                                <p><strong>File:</strong> <span id="templateFileName">-</span></p>
+                                <p><strong>Size:</strong> <span id="templateFileSize">-</span></p>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn btn-primary" id="proceedToGenerateBtn">
+                                    <i class="fas fa-arrow-right"></i> Proceed to Generate Results
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Generate Results -->
+                <div class="card" id="generateCard" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <h3><i class="fas fa-magic"></i> Generate Results</h3>
+                    </div>
+                    <div class="generate-results">
+                        <div class="generation-summary">
+                            <h4>Generation Summary</h4>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span class="label">Total Students:</span>
+                                    <span class="value" id="totalStudentsCount">0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">Results to Generate:</span>
+                                    <span class="value" id="resultsToGenerate">0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">Output Folder:</span>
+                                    <span class="value" id="outputFolder">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-actions">
+                            <button class="btn btn-primary" id="generateResultsBtn">
+                                <i class="fas fa-magic"></i> Generate All Results
+                            </button>
+                            <button class="btn btn-secondary" id="previewResultsBtn">
+                                <i class="fas fa-eye"></i> Preview Sample
+                            </button>
+                            <button class="btn btn-success" id="generateAllPdfBtn">
+                                <i class="fas fa-file-pdf"></i> Generate All PDF Results
+                            </button>
+                            <button class="btn btn-info" id="downloadZipBtn">
+                                <i class="fas fa-download"></i> Download ZIP
+                            </button>
+                            <button class="btn btn-secondary" id="viewFolderBtn">
+                                <i class="fas fa-folder-open"></i> View Folder
+                            </button>
+                            <button class="btn btn-primary" id="emailResultsBtn">
+                                <i class="fas fa-envelope"></i> Email Results
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div id="progressSection" class="card" style="display: none;">
+                    <div class="progress-header">
+                        <h3><i class="fas fa-spinner fa-spin"></i> Generating Results...</h3>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">0%</div>
+                    <div class="progress-details" id="progressDetails">
+                        <p>Processing student results...</p>
+                    </div>
+                </div>
+
+                <!-- Results Summary -->
+                <div id="resultsSummary" class="card" style="display: none;">
+                    <div class="summary-header">
+                        <h3><i class="fas fa-check-circle"></i> Results Generated Successfully</h3>
+                    </div>
+                    <div class="summary-content">
+                        <div class="summary-stats">
+                            <div class="stat-item">
+                                <span class="label">Total Generated:</span>
+                                <span class="value" id="generatedCount">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Success Rate:</span>
+                                <span class="value" id="successRate">0%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Output Location:</span>
+                                <span class="value" id="outputLocation">-</span>
+                            </div>
+                        </div>
+                        <div class="summary-actions">
+                            <button class="btn btn-primary" id="downloadAllBtn">
+                                <i class="fas fa-download"></i> Download All Results
+                            </button>
+                            <button class="btn btn-secondary" id="viewFolderBtn">
+                                <i class="fas fa-folder-open"></i> Open Results Folder
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Student Details Modal -->
+    <div id="studentDetailsModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-graduate"></i> Student Results Details (All Subjects)</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="student-info">
+                    <h3 id="modalStudentName">Student Name</h3>
+                    <p id="modalStudentId">Student ID</p>
+                </div>
+                
+                <div class="subjects-breakdown">
+                    <h4>Subjects Breakdown</h4>
+                    <div id="subjectsTable" class="subjects-table">
+                        <!-- Subjects will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="overall-summary">
+                    <h4>Overall Summary</h4>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span class="label">Total Score:</span>
+                            <span class="value" id="modalTotalScore">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Average Percentage:</span>
+                            <span class="value" id="modalAveragePercentage">0%</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Overall Grade:</span>
+                            <span class="grade-badge" id="modalOverallGrade">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Position:</span>
+                            <span class="value" id="modalPosition">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="saveStudentMarks">Save Changes</button>
+                <button class="btn btn-secondary" onclick="closeStudentModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fas fa-eye"></i> Results Preview</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="previewContent">
+                    <!-- Preview content will be loaded here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closePreviewModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../sidebar.js"></script>
+    <script src="prepare-results.js"></script>
+</body>
+</html> 

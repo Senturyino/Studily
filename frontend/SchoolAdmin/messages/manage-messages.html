@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Messages - Studily</title>
+    <link rel="stylesheet" href="../../studily-theme.css">
+    <link rel="stylesheet" href="../../sidebar.css">
+    <link rel="stylesheet" href="manage-messages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">School Administration</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../managestudents/Manage-students.html" class="sidebar-nav-item">
+                    <i class="fas fa-user-graduate"></i> Manage Students
+                </a>
+                <a href="../manage-teachers/manage-teachers.html" class="sidebar-nav-item">
+                    <i class="fas fa-chalkboard-teacher"></i> Manage Teachers
+                </a>
+                <a href="../Class/manage-classes.html" class="sidebar-nav-item">
+                    <i class="fas fa-school"></i> Manage Classes
+                </a>
+                <a href="../fees/manage-fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Manage Fees
+                </a>
+                <a href="../academicyear/manage-academic-years.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-alt"></i> Academic Years
+                </a>
+                <a href="../upload-results/upload-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-upload"></i> Upload Results
+                </a>
+                <a href="../prepare results/prepare-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-calculator"></i> Prepare Results
+                </a>
+                <a href="manage-messages.html" class="sidebar-nav-item active">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Manage Messages</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Administrator</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Header -->
+                <div class="card">
+                    <div class="header-content">
+                        <h1><i class="fas fa-bullhorn"></i> Manage Messages & Announcements</h1>
+                        <button class="send-btn" onclick="openSendMessageModal()">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Message Statistics -->
+                <div class="card">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalStudents">0</h3>
+                                <p>Total Students</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalTeachers">0</h3>
+                                <p>Total Teachers</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalMessages">0</h3>
+                                <p>Messages Sent</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalAnnouncements">0</h3>
+                                <p>Announcements</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card">
+                    <div class="quick-actions">
+                        <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                        <div class="action-buttons">
+                            <button class="action-btn" onclick="quickAnnouncement('all-students')">
+                                <i class="fas fa-bullhorn"></i>
+                                <span>Announcement to All Students</span>
+                            </button>
+                            <button class="action-btn" onclick="quickAnnouncement('all-teachers')">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                <span>Announcement to All Teachers</span>
+                            </button>
+                            <button class="action-btn" onclick="quickAnnouncement('all-users')">
+                                <i class="fas fa-users"></i>
+                                <span>Announcement to Everyone</span>
+                            </button>
+                            <button class="action-btn" onclick="openSendMessageModal()">
+                                <i class="fas fa-envelope"></i>
+                                <span>Custom Message</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message History -->
+                <div class="card">
+                    <div class="message-history">
+                        <div class="section-header">
+                            <h2><i class="fas fa-history"></i> Message History</h2>
+                            <div class="filter-controls">
+                                <select id="messageTypeFilter">
+                                    <option value="">All Types</option>
+                                    <option value="announcement">Announcements</option>
+                                    <option value="message">Messages</option>
+                                </select>
+                                <select id="recipientFilter">
+                                    <option value="">All Recipients</option>
+                                    <option value="students">Students</option>
+                                    <option value="teachers">Teachers</option>
+                                    <option value="all">Everyone</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="messages-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Type</th>
+                                        <th>Subject</th>
+                                        <th>Recipients</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="messagesTableBody">
+                                    <!-- Messages will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Send Message Modal -->
+    <div id="sendMessageModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-paper-plane"></i> Send Message</h2>
+                <span class="close" onclick="closeSendMessageModal()">&times;</span>
+            </div>
+            <form id="sendMessageForm" class="message-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="messageType">Message Type *</label>
+                        <select id="messageType" name="messageType" required>
+                            <option value="">Select Type</option>
+                            <option value="announcement">Announcement</option>
+                            <option value="message">Message</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Priority</label>
+                        <select id="priority" name="priority">
+                            <option value="normal">Normal</option>
+                            <option value="important">Important</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" name="subject" placeholder="Enter message subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="messageContent">Message Content *</label>
+                    <textarea id="messageContent" name="messageContent" rows="6" placeholder="Enter your message content..." required></textarea>
+                </div>
+
+                <div class="recipient-section">
+                    <h3><i class="fas fa-users"></i> Select Recipients</h3>
+                    
+                    <div class="recipient-tabs">
+                        <button type="button" class="tab-btn active" onclick="switchTab('students')">
+                            <i class="fas fa-user-graduate"></i> Students
+                        </button>
+                        <button type="button" class="tab-btn" onclick="switchTab('teachers')">
+                            <i class="fas fa-chalkboard-teacher"></i> Teachers
+                        </button>
+                        <button type="button" class="tab-btn" onclick="switchTab('classes')">
+                            <i class="fas fa-school"></i> Classes
+                        </button>
+                    </div>
+
+                    <div id="studentsTab" class="tab-content active">
+                        <div class="recipient-options">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="allStudents" onchange="toggleAllStudents()">
+                                <span class="checkmark"></span>
+                                Send to All Students
+                            </label>
+                            <div class="student-list">
+                                <h4>Or Select Specific Students:</h4>
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="studentSearch" placeholder="Search students...">
+                                </div>
+                                <div class="checkbox-list" id="studentsList">
+                                    <!-- Students will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="teachersTab" class="tab-content">
+                        <div class="recipient-options">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="allTeachers" onchange="toggleAllTeachers()">
+                                <span class="checkmark"></span>
+                                Send to All Teachers
+                            </label>
+                            <div class="teacher-list">
+                                <h4>Or Select Specific Teachers:</h4>
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="teacherSearch" placeholder="Search teachers...">
+                                </div>
+                                <div class="checkbox-list" id="teachersList">
+                                    <!-- Teachers will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="classesTab" class="tab-content">
+                        <div class="recipient-options">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="allClasses" onchange="toggleAllClasses()">
+                                <span class="checkmark"></span>
+                                Send to All Classes
+                            </label>
+                            <div class="class-list">
+                                <h4>Or Select Specific Classes:</h4>
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="classSearch" placeholder="Search classes...">
+                                </div>
+                                <div class="checkbox-list" id="classesList">
+                                    <!-- Classes will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeSendMessageModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../sidebar.js"></script>
+    <script src="manage-messages.js"></script>
+</body>
+</html> 

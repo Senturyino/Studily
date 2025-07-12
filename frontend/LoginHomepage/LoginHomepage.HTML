@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studily - Login</title>
+  <link rel="stylesheet" href="../studily-theme.css" />
+  <link rel="stylesheet" href="LoginHomepage.css" />
+  <link rel="icon" type="image/png" href="../../Studily Logo.png">
+</head>
+<body>
+
+  <div class="login-wrapper">
+    <div class="login-box">
+      <div class="brand-header">
+        <h1 class="brand-title">Studily</h1>
+        <p class="brand-subtitle">School Management System</p>
+      </div>
+      <form id="loginForm">
+
+        <div class="input-group">
+          <label for="category">Select School Category</label>
+          <select id="category" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="primary_jhs">Primary/JHS Schools</option>
+            <option value="shs">SHS Schools</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="school">Select School</label>
+          <select id="school" name="school" required>
+            <option disabled selected>Select a category first</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="studentId">Student ID / Admin Email</label>
+          <input type="text" id="studentId" name="studentId" required />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+        <p id="loginError" class="error-message"></p>
+        <div class="forgot-password">
+  <a href="resetpage/reset-password.html">Forgot Password?</a>
+</div>
+      </form>
+    </div>
+    <div class="bottom-links">
+  <a href="../SchoolAdmin/admin-login.html">School Admin Login</a> |
+  <a href="../teacher/login.html">Teacher Login</a>
+</div>
+  </div>
+
+  <script src="LoginHomepage.js"></script>
+</body>
+</html>

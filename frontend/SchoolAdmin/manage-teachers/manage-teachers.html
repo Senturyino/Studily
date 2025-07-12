@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Teachers - Studily</title>
+    <link rel="stylesheet" href="../../studily-theme.css">
+    <link rel="stylesheet" href="../../sidebar.css">
+    <link rel="stylesheet" href="manage-teachers.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">School Administration</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../managestudents/Manage-students.html" class="sidebar-nav-item">
+                    <i class="fas fa-user-graduate"></i> Manage Students
+                </a>
+                <a href="manage-teachers.html" class="sidebar-nav-item active">
+                    <i class="fas fa-chalkboard-teacher"></i> Manage Teachers
+                </a>
+                <a href="../Class/manage-classes.html" class="sidebar-nav-item">
+                    <i class="fas fa-school"></i> Manage Classes
+                </a>
+                <a href="../fees/manage-fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Manage Fees
+                </a>
+                <a href="../academicyear/manage-academic-years.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-alt"></i> Academic Years
+                </a>
+                <a href="../upload-results/upload-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-upload"></i> Upload Results
+                </a>
+                <a href="../prepare results/prepare-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-calculator"></i> Prepare Results
+                </a>
+                <a href="../messages/manage-messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Manage Teachers</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Administrator</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Header -->
+                <div class="card">
+                    <div class="header-content">
+                        <h1><i class="fas fa-chalkboard-teacher"></i> Manage Teachers</h1>
+                        <button class="enroll-btn" onclick="openEnrollModal()">
+                            <i class="fas fa-plus"></i> Enroll Teacher
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search and Filter Section -->
+                <div class="card">
+                    <div class="search-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Search teachers...">
+                        </div>
+                        <div class="filter-options">
+                            <select id="subjectFilter">
+                                <option value="">All Subjects</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                            <select id="classFilter">
+                                <option value="">All Classes</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                            <select id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teachers Table -->
+                <div class="card">
+                    <div class="table-container">
+                        <table class="teachers-table">
+                            <thead>
+                                <tr>
+                                    <th>Teacher ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Subjects</th>
+                                    <th>Classes</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teachersTableBody">
+                                <!-- Teachers will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="card">
+                    <div class="pagination">
+                        <button class="pagination-btn" onclick="previousPage()">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span id="pageInfo">Page 1 of 1</span>
+                        <button class="pagination-btn" onclick="nextPage()">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Enroll Teacher Modal -->
+    <div id="enrollModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Enroll New Teacher</h2>
+                <span class="close" onclick="closeEnrollModal()">&times;</span>
+            </div>
+            <form id="enrollForm" class="enroll-form">
+                <div class="form-group">
+                    <label for="teacherId">Teacher ID *</label>
+                    <input type="text" id="teacherId" name="teacher_ID" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fullName">Teacher Full Name *</label>
+                    <input type="text" id="fullName" name="TFull_N" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Teacher Email *</label>
+                    <input type="email" id="email" name="TEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Teacher Password *</label>
+                    <input type="password" id="password" name="T_Password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subjects">Subjects *</label>
+                    <select id="subjects" name="Subject_id" multiple required>
+                        <!-- Will be populated from database -->
+                    </select>
+                    <div class="selected-items" id="selectedSubjects"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="classes">Classes *</label>
+                    <select id="classes" name="Class_id" multiple required>
+                        <!-- Will be populated from database -->
+                    </select>
+                    <div class="selected-items" id="selectedClasses"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeEnrollModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Enroll Teacher
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Teacher Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Teacher</h2>
+                <span class="close" onclick="closeEditModal()">&times;</span>
+            </div>
+            <form id="editForm" class="enroll-form">
+                <input type="hidden" id="editTeacherId" name="teacher_ID">
+                
+                <div class="form-group">
+                    <label for="editFullName">Teacher Full Name *</label>
+                    <input type="text" id="editFullName" name="TFull_N" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editEmail">Teacher Email *</label>
+                    <input type="email" id="editEmail" name="TEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editSubjects">Subjects *</label>
+                    <select id="editSubjects" name="Subject_id" multiple required>
+                    </select>
+                    <div class="selected-items" id="editSelectedSubjects"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editClasses">Classes *</label>
+                    <select id="editClasses" name="Class_id" multiple required>
+                    </select>
+                    <div class="selected-items" id="editSelectedClasses"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editStatus">Status</label>
+                    <select id="editStatus" name="status">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Update Teacher
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Teacher Details Modal -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content view-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-tie"></i> Teacher Details</h2>
+                <span class="close" onclick="closeViewModal()">&times;</span>
+            </div>
+            <div class="view-content">
+                <div class="teacher-profile">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="viewTeacherName">Teacher Name</h3>
+                        <p id="viewTeacherId" class="teacher-id">Teacher ID: <span></span></p>
+                    </div>
+                </div>
+                
+                <div class="teacher-details-grid">
+                    <div class="detail-section">
+                        <h4><i class="fas fa-info-circle"></i> Personal Information</h4>
+                        <div class="detail-item">
+                            <span class="label">Full Name:</span>
+                            <span id="viewFullName" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Email:</span>
+                            <span id="viewEmail" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Status:</span>
+                            <span id="viewStatus" class="value"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4><i class="fas fa-book"></i> Teaching Information</h4>
+                        <div class="detail-item">
+                            <span class="label">Subjects:</span>
+                            <span id="viewSubjects" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Classes:</span>
+                            <span id="viewClasses" class="value"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../sidebar.js"></script>
+    <script src="manage-teachers.js"></script>
+</body>
+</html> 

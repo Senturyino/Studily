@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance - Studily</title>
+    <link rel="stylesheet" href="/frontend/studily-theme.css">
+    <link rel="stylesheet" href="/frontend/sidebar.css">
+    <link rel="stylesheet" href="attendance.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">Student Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="attendance.html" class="sidebar-nav-item active">
+                    <i class="fas fa-calendar-check"></i> Attendance
+                </a>
+                <a href="../CLASSWORK/classwork.html" class="sidebar-nav-item">
+                    <i class="fas fa-book"></i> Classwork
+                </a>
+                <a href="../Fees/fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Fees
+                </a>
+                <a href="../messages/messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="../results/results.html" class="sidebar-nav-item">
+                    <i class="fas fa-chart-line"></i> Results
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">My Attendance Records</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Student</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <div class="container">
+                    <!-- Header -->
+                    <header class="header">
+                        <div class="header-content">
+                            <h1><i class="fas fa-calendar-check"></i> My Attendance Records</h1>
+                            <div class="student-info">
+                                <span id="studentName">Loading...</span>
+                                <span id="studentClass">Loading...</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Statistics Cards -->
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-icon present">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="presentDays">0</h3>
+                                <p>Present Days</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon absent">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="absentDays">0</h3>
+                                <p>Absent Days</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon late">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="lateDays">0</h3>
+                                <p>Late Days</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon rate">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="attendanceRate">0%</h3>
+                                <p>Attendance Rate</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="filters-container">
+                        <div class="filter-group">
+                            <label for="dateRange">Date Range:</label>
+                            <select id="dateRange">
+                                <option value="all">All Time</option>
+                                <option value="month">This Month</option>
+                                <option value="semester">This Semester</option>
+                                <option value="custom">Custom Range</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="statusFilter">Status:</label>
+                            <select id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="present">Present</option>
+                                <option value="absent">Absent</option>
+                                <option value="late">Late</option>
+                                <option value="excused">Excused</option>
+                            </select>
+                        </div>
+                        <div class="filter-group custom-date" style="display: none;">
+                            <label for="startDate">Start Date:</label>
+                            <input type="date" id="startDate">
+                        </div>
+                        <div class="filter-group custom-date" style="display: none;">
+                            <label for="endDate">End Date:</label>
+                            <input type="date" id="endDate">
+                        </div>
+                        <button id="applyFilters" class="btn btn-primary">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="charts-container">
+                        <div class="chart-card">
+                            <h3>Attendance Trend</h3>
+                            <canvas id="attendanceChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Attendance Distribution</h3>
+                            <canvas id="distributionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Records Table -->
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>Attendance Records</h3>
+                            <div class="table-actions">
+                                <button id="exportBtn" class="btn btn-secondary">
+                                    <i class="fas fa-download"></i> Export
+                                </button>
+                                <button id="refreshBtn" class="btn btn-primary">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="attendanceTable" class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Class</th>
+                                        <th>Reason</th>
+                                        <th>Recorded By</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendanceTableBody">
+                                    <tr>
+                                        <td colspan="5" class="loading">Loading attendance records...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination">
+                            <button id="prevPage" class="btn btn-secondary" disabled>
+                                <i class="fas fa-chevron-left"></i> Previous
+                            </button>
+                            <span id="pageInfo">Page 1 of 1</span>
+                            <button id="nextPage" class="btn btn-secondary" disabled>
+                                Next <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading attendance data...</p>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Error</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeErrorModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../sidebar.js"></script>
+    <script src="attendance.js"></script>
+</body>
+</html> 

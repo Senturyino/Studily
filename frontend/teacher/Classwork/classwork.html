@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classwork Management - Studily</title>
+    <link rel="stylesheet" href="/frontend/studily-theme.css">
+    <link rel="stylesheet" href="/frontend/sidebar.css">
+    <link rel="stylesheet" href="/frontend/teacher/Classwork/classwork.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">Teacher Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="classwork.html" class="sidebar-nav-item active">
+                    <i class="fas fa-book"></i> Classwork
+                </a>
+                <a href="../teacher attendance/attendance.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-check"></i> Attendance
+                </a>
+                <a href="../messages/messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="../results/results.html" class="sidebar-nav-item">
+                    <i class="fas fa-chart-line"></i> Results
+                </a>
+                
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Classwork Management</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Teacher</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Brand Header -->
+                <div class="brand-header">
+                    <h1 class="brand-title">Studily</h1>
+                    <p class="brand-subtitle">Classwork Management System</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Students</h3>
+                            <p class="stat-number" id="totalStudents">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Active Classes</h3>
+                            <p class="stat-number" id="activeClasses">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Pending Grades</h3>
+                            <p class="stat-number" id="pendingGrades">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Avg Performance</h3>
+                            <p class="stat-number" id="avgPerformance">0%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class Selection -->
+                <div class="card">
+                    <h2><i class="fas fa-chalkboard"></i> Select Class & Subject</h2>
+                    <div class="class-selection">
+                        <div class="form-group">
+                            <label for="classSelect">Class</label>
+                            <select id="classSelect" class="form-control">
+                                <option value="">Select a class...</option>
+                                <option value="form1a">Form 1A</option>
+                                <option value="form1b">Form 1B</option>
+                                <option value="form2a">Form 2A</option>
+                                <option value="form2b">Form 2B</option>
+                                <option value="form3a">Form 3A</option>
+                                <option value="form3b">Form 3B</option>
+                                <option value="form4a">Form 4A</option>
+                                <option value="form4b">Form 4B</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="subjectSelect">Subject</label>
+                            <select id="subjectSelect" class="form-control">
+                                <option value="">Select a subject...</option>
+                                <option value="mathematics">Mathematics</option>
+                                <option value="english">English</option>
+                                <option value="science">Science</option>
+                                <option value="history">History</option>
+                                <option value="geography">Geography</option>
+                                <option value="physics">Physics</option>
+                                <option value="chemistry">Chemistry</option>
+                                <option value="biology">Biology</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" id="loadClassBtn">
+                            <i class="fas fa-search"></i> Load Class
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Assignment Management -->
+                <div class="card" id="assignmentSection" style="display: none;">
+                    <h2><i class="fas fa-tasks"></i> Assignment Management</h2>
+                    <div class="assignment-controls">
+                        <button class="btn btn-primary" id="createAssignmentBtn">
+                            <i class="fas fa-plus"></i> Create New Assignment
+                        </button>
+                        <button class="btn btn-secondary" id="viewAssignmentsBtn">
+                            <i class="fas fa-list"></i> View All Assignments
+                        </button>
+                    </div>
+                    
+                    <div class="assignments-list" id="assignmentsList">
+                        <!-- Assignments will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Student List -->
+                <div class="card" id="studentsSection" style="display: none;">
+                    <h2><i class="fas fa-users"></i> Class Students</h2>
+                    <div class="students-controls">
+                        <div class="search-box">
+                            <input type="text" id="studentSearch" placeholder="Search students...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="students-actions">
+                            <button class="btn btn-primary" id="exportMarksBtn">
+                                <i class="fas fa-download"></i> Export All Marks
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="students-grid" id="studentsGrid">
+                        <!-- Student cards will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Performance Analytics -->
+                <div class="card" id="analyticsSection" style="display: none;">
+                    <h2><i class="fas fa-chart-bar"></i> Performance Analytics</h2>
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Class Performance</h3>
+                            <div class="performance-chart" id="classPerformanceChart">
+                                <!-- Chart will be rendered here -->
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Grade Distribution</h3>
+                            <div class="grade-distribution" id="gradeDistribution">
+                                <!-- Grade distribution will be shown here -->
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Top Performers</h3>
+                            <div class="top-performers" id="topPerformers">
+                                <!-- Top performers list -->
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Need Attention</h3>
+                            <div class="need-attention" id="needAttention">
+                                <!-- Students needing attention -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Assignment Modal -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus"></i> Create New Assignment</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="assignmentForm">
+                    <div class="form-group">
+                        <label for="assignmentTitle">Assignment Title</label>
+                        <input type="text" id="assignmentTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentDescription">Description</label>
+                        <textarea id="assignmentDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="maxMarks">Maximum Marks</label>
+                            <input type="number" id="maxMarks" min="1" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dueDate">Due Date</label>
+                            <input type="date" id="dueDate" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentType">Assignment Type</label>
+                        <select id="assignmentType" required>
+                            <option value="">Select type...</option>
+                            <option value="homework">Homework</option>
+                            <option value="classwork">Classwork</option>
+                            <option value="project">Project</option>
+                            <option value="quiz">Quiz</option>
+                            <option value="test">Test</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelAssignment">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Assignment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assignment Details Modal -->
+    <div id="assignmentDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-info-circle"></i> Assignment Details</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="assignmentDetailsContent">
+                <!-- Assignment details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Marks Modal -->
+    <div id="studentMarksModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-graduate"></i> Record Student Marks</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="student-info-header">
+                    <div class="student-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="student-details">
+                        <h3 id="modalStudentName">Student Name</h3>
+                        <p id="modalStudentId">Student ID</p>
+                    </div>
+                </div>
+                
+                <div class="marks-form">
+                    <h4><i class="fas fa-tasks"></i> Assignment Marks</h4>
+                    <div class="assignments-marks" id="assignmentsMarks">
+                        <!-- Assignment mark inputs will be generated here -->
+                    </div>
+                    
+                    <div class="marks-summary">
+                        <div class="summary-item">
+                            <span class="label">Total Marks:</span>
+                            <span class="value" id="modalTotalMarks">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Average:</span>
+                            <span class="value" id="modalAverageMarks">0%</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Grade:</span>
+                            <span class="grade-badge" id="modalGrade">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelMarks">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveMarks">Save Marks</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/frontend/sidebar.js"></script>
+    <script src="classwork.js"></script>
+</body>
+</html> 

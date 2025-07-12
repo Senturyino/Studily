@@ -1,0 +1,479 @@
+/* ========================================
+   STUDILY UNIFIED THEME
+   ======================================== */
+
+/* CSS Custom Properties for Consistent Theming */
+:root {
+    /* Primary Colors */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-color: #667eea;
+    --primary-dark: #764ba2;
+    
+    /* Secondary Colors */
+    --secondary-color: #4a5568;
+    --secondary-light: #a0aec0;
+    
+    /* Background Colors */
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --bg-input: white;
+    
+    /* Border Colors */
+    --border-color: #e2e8f0;
+    --border-focus: #667eea;
+    
+    /* Text Colors */
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-light: #a0aec0;
+    --text-white: white;
+    
+    /* Shadow Colors */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --shadow-primary: rgba(102, 126, 234, 0.4);
+    --shadow-primary-hover: rgba(102, 126, 234, 0.6);
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 15px;
+    --radius-lg: 20px;
+    --radius-xl: 25px;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* Typography */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 var(--spacing-md) 0;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+h1 { font-size: var(--font-size-4xl); font-weight: 800; }
+h2 { font-size: var(--font-size-3xl); font-weight: 700; }
+h3 { font-size: var(--font-size-2xl); font-weight: 600; }
+h4 { font-size: var(--font-size-xl); font-weight: 600; }
+h5 { font-size: var(--font-size-lg); font-weight: 500; }
+h6 { font-size: var(--font-size-base); font-weight: 500; }
+
+p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   BRAND HEADER
+   ======================================== */
+
+.brand-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px var(--shadow-light);
+}
+
+.brand-title {
+    font-size: 4rem;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.brand-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin: var(--spacing-sm) 0 0 0;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* ========================================
+   CONTAINERS
+   ======================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+.card {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: 0 8px 32px var(--shadow-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ========================================
+   FORMS
+   ======================================== */
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    transition: var(--transition-normal);
+    background: var(--bg-input);
+    font-family: var(--font-family);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius-xl);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-family: var(--font-family);
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: var(--text-white);
+    box-shadow: 0 4px 15px var(--shadow-primary);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-primary-hover);
+}
+
+.btn-secondary {
+    background: var(--border-color);
+    color: var(--text-secondary);
+}
+
+.btn-secondary:hover {
+    background: #cbd5e0;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+    color: var(--text-white);
+    box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 101, 101, 0.6);
+}
+
+/* ========================================
+   TABLES
+   ======================================== */
+
+.table-container {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 8px 32px var(--shadow-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background: var(--primary-gradient);
+    color: var(--text-white);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition-normal);
+}
+
+tbody tr:hover {
+    background-color: #f7fafc;
+    transform: scale(1.01);
+}
+
+/* ========================================
+   MODALS
+   ======================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: var(--bg-input);
+    margin: 5% auto;
+    padding: 0;
+    border-radius: var(--radius-md);
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 60px var(--shadow-medium);
+    animation: modalSlideIn 0.3s ease;
+}
+
+.modal-header {
+    background: var(--primary-gradient);
+    color: var(--text-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin: 0;
+}
+
+.close {
+    color: var(--text-white);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.close:hover {
+    transform: scale(1.1);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   STATUS BADGES
+   ======================================== */
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-active {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.status-inactive {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-center { justify-content: center; align-items: center; }
+.flex-between { justify-content: space-between; }
+.flex-around { justify-content: space-around; }
+
+.grid { display: grid; }
+.grid-1 { grid-template-columns: 1fr; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .brand-title {
+        font-size: 3rem;
+        letter-spacing: 2px;
+    }
+    
+    .brand-subtitle {
+        font-size: var(--font-size-base);
+    }
+    
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    .card {
+        padding: var(--spacing-md);
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 15px 24px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    th, td {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-title {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .container {
+        padding: var(--spacing-sm);
+    }
+    
+    .card {
+        padding: var(--spacing-sm);
+    }
+    
+    th, td {
+        padding: 8px 6px;
+        font-size: 0.8rem;
+    }
+} 

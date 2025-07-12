@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Fees - Studily</title>
+    <link rel="stylesheet" href="../../studily-theme.css">
+    <link rel="stylesheet" href="../../sidebar.css">
+    <link rel="stylesheet" href="manage-fees.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">School Administration</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../managestudents/Manage-students.html" class="sidebar-nav-item">
+                    <i class="fas fa-user-graduate"></i> Manage Students
+                </a>
+                <a href="../manage-teachers/manage-teachers.html" class="sidebar-nav-item">
+                    <i class="fas fa-chalkboard-teacher"></i> Manage Teachers
+                </a>
+                <a href="../Class/manage-classes.html" class="sidebar-nav-item">
+                    <i class="fas fa-school"></i> Manage Classes
+                </a>
+                <a href="manage-fees.html" class="sidebar-nav-item active">
+                    <i class="fas fa-money-bill"></i> Manage Fees
+                </a>
+                <a href="../academicyear/manage-academic-years.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-alt"></i> Academic Years
+                </a>
+                <a href="../upload-results/upload-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-upload"></i> Upload Results
+                </a>
+                <a href="../prepare results/prepare-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-calculator"></i> Prepare Results
+                </a>
+                <a href="../messages/manage-messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Manage Fees</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Administrator</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Header -->
+                <div class="card">
+                    <div class="header-content">
+                        <h1><i class="fas fa-money-bill-wave"></i> Manage Fees</h1>
+                        <div class="header-actions">
+                            <button class="set-fees-btn" onclick="openSetFeesModal()">
+                                <i class="fas fa-cog"></i> Set Fees Structure
+                            </button>
+                            <button class="record-payment-btn" onclick="openRecordPaymentModal()">
+                                <i class="fas fa-plus"></i> Record Payment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Cards -->
+                <div class="card">
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 id="totalStudents">0</h3>
+                                <p>Total Students</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 id="paidStudents">0</h3>
+                                <p>Fully Paid</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 id="pendingStudents">0</h3>
+                                <p>Pending Payment</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 id="totalRevenue">GHC 0</h3>
+                                <p>Total Revenue</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filter Section -->
+                <div class="card">
+                    <div class="search-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Search students...">
+                        </div>
+                        <div class="filter-options">
+                            <select id="academicYearFilter">
+                                <option value="">All Academic Years</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                            <select id="classFilter">
+                                <option value="">All Classes</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                            <select id="paymentStatusFilter">
+                                <option value="">All Payment Status</option>
+                                <option value="paid">Fully Paid</option>
+                                <option value="partial">Partially Paid</option>
+                                <option value="unpaid">Unpaid</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fees Table -->
+                <div class="card">
+                    <div class="table-container">
+                        <table class="fees-table">
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>Class</th>
+                                    <th>Academic Year</th>
+                                    <th>Total Fees</th>
+                                    <th>Paid Amount</th>
+                                    <th>Balance</th>
+                                    <th>Payment Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feesTableBody">
+                                <!-- Fees data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="card">
+                    <div class="pagination">
+                        <button class="pagination-btn" onclick="previousPage()">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span id="pageInfo">Page 1 of 1</span>
+                        <button class="pagination-btn" onclick="nextPage()">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Set Fees Structure Modal -->
+    <div id="setFeesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-cog"></i> Set Fees Structure</h2>
+                <span class="close" onclick="closeSetFeesModal()">&times;</span>
+            </div>
+            <form id="setFeesForm" class="fees-form">
+                <div class="form-group">
+                    <label for="feesAcademicYear">Academic Year *</label>
+                    <select id="feesAcademicYear" name="academic_year" required>
+                        <option value="">Select Academic Year</option>
+                        <!-- Will be populated from database -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="feesClass">Class *</label>
+                    <select id="feesClass" name="class_id" required>
+                        <option value="">Select Class</option>
+                        <!-- Will be populated from database -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="totalFees">Total Fees Amount (GHC) *</label>
+                    <input type="number" id="totalFees" name="total_fees" min="0" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="feesDescription">Fees Description</label>
+                    <textarea id="feesDescription" name="description" placeholder="Describe what the fees cover (e.g., Tuition, Books, Activities, etc.)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate" name="due_date">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeSetFeesModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Set Fees Structure
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Record Payment Modal -->
+    <div id="recordPaymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus"></i> Record Payment</h2>
+                <span class="close" onclick="closeRecordPaymentModal()">&times;</span>
+            </div>
+            <form id="recordPaymentForm" class="payment-form">
+                <div class="form-group">
+                    <label for="paymentStudent">Student *</label>
+                    <div class="student-search-container">
+                        <div class="search-input-wrapper">
+                            <input type="text" id="studentSearchInput" placeholder="Search students by name or ID..." class="student-search-input">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <select id="paymentStudent" name="student_id" required>
+                            <option value="">Select Student</option>
+                            <!-- Will be populated from database -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentAmount">Payment Amount (GHC) *</label>
+                    <input type="number" id="paymentAmount" name="payment_amount" min="0" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentDate">Payment Date *</label>
+                    <input type="date" id="paymentDate" name="payment_date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod" name="payment_method">
+                        <option value="cash">Cash</option>
+                        <option value="bank_transfer">Bank Transfer</option>
+                        <option value="mobile_money">Mobile Money</option>
+                        <option value="check">Check</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentReference">Payment Reference</label>
+                    <input type="text" id="paymentReference" name="payment_reference" placeholder="Transaction ID, Receipt Number, etc.">
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentNotes">Notes</label>
+                    <textarea id="paymentNotes" name="notes" placeholder="Any additional notes about this payment"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeRecordPaymentModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Record Payment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../sidebar.js"></script>
+    <script src="manage-fees.js"></script>
+</body>
+</html> 

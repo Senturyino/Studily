@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management - Studily</title>
+    <link rel="stylesheet" href="../../studily-theme.css">
+    <link rel="stylesheet" href="../../sidebar.css">
+    <link rel="stylesheet" href="attendance.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">Teacher Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../Classwork/classwork.html" class="sidebar-nav-item">
+                    <i class="fas fa-book"></i> Classwork
+                </a>
+                <a href="attendance.html" class="sidebar-nav-item active">
+                    <i class="fas fa-calendar-check"></i> Attendance
+                </a>
+                <a href="../messages/messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="../results/results.html" class="sidebar-nav-item">
+                    <i class="fas fa-chart-line"></i> Results
+                </a>
+                
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Attendance Management</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Teacher</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Brand Header -->
+                <div class="brand-header">
+                    <h1 class="brand-title">Studily</h1>
+                    <p class="brand-subtitle">School Management System</p>
+                </div>
+
+                <!-- Attendance Overview -->
+                <div class="attendance-overview">
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>Total Students</h3>
+                            <p id="totalStudents">180</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>Present Today</h3>
+                            <p id="presentToday">165</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>Absent Today</h3>
+                            <p id="absentToday">15</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>Attendance Rate</h3>
+                            <p id="attendanceRate">91.7%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class Selection and Date -->
+                <div class="card">
+                    <h2><i class="fas fa-calendar-alt"></i> Class & Daily Attendance</h2>
+                    <div class="selection-controls">
+                        <div class="form-group">
+                            <label for="classSelect">Select Class:</label>
+                            <select id="classSelect" onchange="loadClassStudents()">
+                                <option value="">Choose a class...</option>
+                                <option value="class1">Class 1A - Mathematics</option>
+                                <option value="class2">Class 2B - Science</option>
+                                <option value="class3">Class 3C - English</option>
+                                <option value="class4">Class 4A - History</option>
+                                <option value="class5">Class 5B - Geography</option>
+                                <option value="class6">Class 6C - Literature</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateSelect">Select Date:</label>
+                            <input type="date" id="dateSelect" onchange="loadAttendanceData()">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Bulk Actions -->
+                <div class="card">
+                    <h2><i class="fas fa-tools"></i> Bulk Actions</h2>
+                    <div class="bulk-actions">
+                        <button class="btn btn-primary" onclick="markAllPresent()">
+                            <i class="fas fa-check-double"></i> Mark All Present
+                        </button>
+                        <button class="btn btn-secondary" onclick="markAllAbsent()">
+                            <i class="fas fa-times"></i> Mark All Absent
+                        </button>
+                        <button class="btn btn-secondary" onclick="clearAllAttendance()">
+                            <i class="fas fa-eraser"></i> Clear All
+                        </button>
+                        <button class="btn btn-primary" onclick="saveAttendance()">
+                            <i class="fas fa-save"></i> Save Attendance
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Attendance Table -->
+                <div class="card">
+                    <h2><i class="fas fa-list"></i> Student Attendance</h2>
+                    <div class="table-controls">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="studentSearch" placeholder="Search students...">
+                        </div>
+                        <div class="filter-controls">
+                            <select id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="present">Present</option>
+                                <option value="absent">Absent</option>
+                                <option value="late">Late</option>
+                                <option value="excused">Excused</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="attendanceTable">
+                            <thead>
+                                <tr>
+                                    <th>Roll No</th>
+                                    <th>Student Name</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                    <th>Notes</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendanceTableBody">
+                                <!-- Students will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Attendance Reports -->
+                <div class="card">
+                    <h2><i class="fas fa-chart-bar"></i> Attendance Reports</h2>
+                    <div class="reports-grid">
+                        <div class="report-card">
+                            <h3>Daily Summary</h3>
+                            <div class="report-content">
+                                <p><strong>Date:</strong> <span id="reportDate">Today</span></p>
+                                <p><strong>Class:</strong> <span id="reportClass">Selected Class</span></p>
+                                <p><strong>Total Students:</strong> <span id="reportTotal">0</span></p>
+                                <p><strong>Present:</strong> <span id="reportPresent">0</span></p>
+                                <p><strong>Absent:</strong> <span id="reportAbsent">0</span></p>
+                                <p><strong>Late:</strong> <span id="reportLate">0</span></p>
+                                <p><strong>Attendance Rate:</strong> <span id="reportRate">0%</span></p>
+                            </div>
+                        </div>
+                        <div class="report-card">
+                            <h3>Weekly Overview</h3>
+                            <div class="weekly-chart" id="weeklyChart">
+                                <!-- Chart will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <button class="btn btn-secondary" onclick="exportAttendanceReport()">
+                            <i class="fas fa-download"></i> Export Report
+                        </button>
+                        <button class="btn btn-secondary" onclick="printAttendanceReport()">
+                            <i class="fas fa-print"></i> Print Report
+                        </button>
+                        <button class="btn btn-primary" onclick="generateAttendanceReport()">
+                            <i class="fas fa-chart-line"></i> Generate Full Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Attendance Detail Modal -->
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-edit"></i> Edit Attendance</h2>
+                <span class="close" onclick="closeAttendanceModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="student-info">
+                    <h3 id="modalStudentName">Student Name</h3>
+                    <p><strong>Roll No:</strong> <span id="modalStudentRoll">123</span></p>
+                    <p><strong>Class:</strong> <span id="modalStudentClass">Class 1A</span></p>
+                </div>
+                
+                <div class="attendance-form">
+                    <div class="form-group">
+                        <label for="modalStatus">Attendance Status:</label>
+                        <select id="modalStatus">
+                            <option value="present">Present</option>
+                            <option value="absent">Absent</option>
+                            <option value="late">Late</option>
+                            <option value="excused">Excused</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalTime">Time:</label>
+                        <input type="time" id="modalTime">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalNotes">Notes:</label>
+                        <textarea id="modalNotes" rows="3" placeholder="Add any notes about this student's attendance..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeAttendanceModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveAttendanceDetail()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="attendance.js"></script>
+</body>
+</html> 

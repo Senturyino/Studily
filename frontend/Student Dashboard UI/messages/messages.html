@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Studily</title>
+    <link rel="stylesheet" href="/frontend/studily-theme.css">
+    <link rel="stylesheet" href="/frontend/sidebar.css">
+    <link rel="stylesheet" href="messages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">Student Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../Attendance/attendance.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-check"></i> Attendance
+                </a>
+                <a href="../CLASSWORK/classwork.html" class="sidebar-nav-item">
+                    <i class="fas fa-book"></i> Classwork
+                </a>
+                <a href="../Fees/fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Fees
+                </a>
+                <a href="messages.html" class="sidebar-nav-item active">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="../results/results.html" class="sidebar-nav-item">
+                    <i class="fas fa-chart-line"></i> Results
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">My Messages & Announcements</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Student</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <div class="container">
+                    <!-- Header -->
+                    <header class="header">
+                        <div class="header-content">
+                            <h1><i class="fas fa-envelope"></i> My Messages & Announcements</h1>
+                            <div class="message-stats">
+                                <span class="stat-item">
+                                    <i class="fas fa-bell"></i>
+                                    <span id="unreadCount">3</span> Unread
+                                </span>
+                                <span class="stat-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <span id="totalCount">12</span> Total
+                                </span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Filter and Search -->
+                    <div class="filter-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Search messages...">
+                        </div>
+                        <div class="filter-controls">
+                            <select id="messageTypeFilter">
+                                <option value="">All Types</option>
+                                <option value="announcement">Announcements</option>
+                                <option value="message">Messages</option>
+                            </select>
+                            <select id="priorityFilter">
+                                <option value="">All Priorities</option>
+                                <option value="urgent">Urgent</option>
+                                <option value="important">Important</option>
+                                <option value="normal">Normal</option>
+                            </select>
+                            <button class="btn-secondary" onclick="markAllAsRead()">
+                                <i class="fas fa-check-double"></i> Mark All as Read
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Messages List -->
+                    <div class="messages-container">
+                        <div id="messagesList" class="messages-list">
+                            <!-- Messages will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="emptyState" class="empty-state hidden">
+                        <div class="empty-icon">
+                            <i class="fas fa-inbox"></i>
+                        </div>
+                        <h3>No Messages Found</h3>
+                        <p>You don't have any messages matching your current filters.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Message Detail Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-envelope-open"></i> Message Details</h2>
+                <span class="close" onclick="closeMessageModal()">&times;</span>
+            </div>
+            <div class="message-details">
+                <div class="message-header">
+                    <div class="message-info">
+                        <h3 id="modalMessageSubject">Message Subject</h3>
+                        <p class="message-meta">
+                            <span id="modalMessageDate">Date</span> | 
+                            <span id="modalMessageType">Type</span> | 
+                            <span id="modalMessagePriority">Priority</span>
+                        </p>
+                    </div>
+                    <div class="message-status">
+                        <span id="modalMessageStatus" class="status-badge">Status</span>
+                    </div>
+                </div>
+                
+                <div class="message-content">
+                    <h4>Message Content:</h4>
+                    <div id="modalMessageContent" class="content-text">
+                        <!-- Message content will be displayed here -->
+                    </div>
+                </div>
+                
+                <div class="message-sender">
+                    <h4>From:</h4>
+                    <p id="modalMessageSender">School Administration</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../sidebar.js"></script>
+    <script src="messages.js"></script>
+</body>
+</html> 

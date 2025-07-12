@@ -1,0 +1,540 @@
+/* ========================================
+   UPLOAD RESULTS STYLES
+   ======================================== */
+
+/* Main Layout */
+.main-content {
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Upload Card */
+.upload-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 2rem;
+}
+
+.upload-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* File Upload Area */
+.file-upload-area {
+    border: 3px dashed #667eea;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+}
+
+.file-upload-area:hover {
+    border-color: #764ba2;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e0e8ff 100%);
+    transform: translateY(-2px);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.upload-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.upload-hint {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+/* File List */
+.file-list {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e1e5e9;
+}
+
+.file-list h4 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    border: 1px solid #e1e5e9;
+}
+
+.file-item:last-child {
+    margin-bottom: 0;
+}
+
+.file-icon {
+    color: #dc3545;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.file-name {
+    flex: 1;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.file-size {
+    font-size: 0.8rem;
+    color: #666;
+    margin-left: 1rem;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Upload Progress */
+.upload-progress {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 2rem;
+}
+
+.progress-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.progress-header h3 {
+    color: #333;
+    margin: 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #e1e5e9;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Upload Results */
+.upload-results {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 2rem;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.results-header h3 {
+    color: #28a745;
+    margin: 0;
+}
+
+.results-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summary-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.summary-item .label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.summary-item .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.summary-item .value.success {
+    color: #28a745;
+}
+
+.summary-item .value.error {
+    color: #dc3545;
+}
+
+.results-details h4 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid #28a745;
+}
+
+.result-item.error {
+    border-left-color: #dc3545;
+}
+
+.result-icon {
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.result-icon.success {
+    color: #28a745;
+}
+
+.result-icon.error {
+    color: #dc3545;
+}
+
+.result-details {
+    flex: 1;
+}
+
+.result-student {
+    font-weight: 600;
+    color: #333;
+}
+
+.result-filename {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Instructions */
+.instructions-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.instructions-card h3 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.instructions-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.instruction-item {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.instruction-item h4 {
+    color: #333;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.instruction-item p {
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e1e5e9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header.success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+.modal-header.error {
+    background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+    color: white;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.close {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.close:hover {
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-body p {
+    margin: 0 0 1rem 0;
+    color: #333;
+    line-height: 1.5;
+}
+
+.success-details {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.success-details p {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #e1e5e9;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .upload-card,
+    .upload-progress,
+    .upload-results,
+    .instructions-card {
+        padding: 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .results-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .instructions-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .upload-card,
+    .upload-progress,
+    .upload-results,
+    .instructions-card {
+        padding: 1rem;
+    }
+    
+    .file-upload-area {
+        padding: 2rem 1rem;
+    }
+    
+    .upload-icon {
+        font-size: 2rem;
+    }
+} 

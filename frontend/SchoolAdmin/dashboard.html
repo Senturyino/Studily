@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Admin Dashboard - Studily</title>
+    <link rel="stylesheet" href="../studily-theme.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">School Administration</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-nav-item active">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="managestudents/Manage-students.html" class="sidebar-nav-item">
+                    <i class="fas fa-user-graduate"></i> Manage Students
+                </a>
+                <a href="manage-teachers/manage-teachers.html" class="sidebar-nav-item">
+                    <i class="fas fa-chalkboard-teacher"></i> Manage Teachers
+                </a>
+                <a href="Class/manage-classes.html" class="sidebar-nav-item">
+                    <i class="fas fa-school"></i> Manage Classes
+                </a>
+                <a href="fees/manage-fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Manage Fees
+                </a>
+                <a href="academicyear/manage-academic-years.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-alt"></i> Academic Years
+                </a>
+                <a href="upload-results/upload-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-upload"></i> Upload Results
+                </a>
+                <a href="prepare results/prepare-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-calculator"></i> Prepare Results
+                </a>
+                <a href="messages/manage-messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">School Admin Dashboard</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Administrator</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <h1><i class="fas fa-shield-alt"></i> School Administration Dashboard</h1>
+                    <p>Manage students, teachers, classes, fees, and all school operations from one central location</p>
+                </div>
+
+                <!-- School Statistics Overview -->
+                <div class="card">
+                    <h2><i class="fas fa-chart-bar"></i> School Statistics Overview</h2>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h3>Total Students</h3>
+                            <p data-stat="totalStudents">1,250</p>
+                            <small>Enrolled students</small>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h3>Total Teachers</h3>
+                            <p data-stat="totalTeachers">45</p>
+                            <small>Active teachers</small>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <h3>Total Classes</h3>
+                            <p data-stat="totalClasses">32</p>
+                            <small>Active classes</small>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-money-bill"></i>
+                            </div>
+                            <h3>Pending Fees</h3>
+                            <p data-stat="pendingFees">23</p>
+                            <small>Students with pending fees</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Management -->
+                <div class="card">
+                    <h2><i class="fas fa-graduation-cap"></i> Academic Management</h2>
+                    <div class="dashboard-grid">
+                        <a href="managestudents/Manage-students.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h3>Manage Students</h3>
+                            <p>Add, edit, and manage student records and information</p>
+                        </a>
+
+                        <a href="manage-teachers/manage-teachers.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h3>Manage Teachers</h3>
+                            <p>Manage teacher accounts, assignments, and permissions</p>
+                        </a>
+
+                        <a href="Class/manage-classes.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <h3>Manage Classes</h3>
+                            <p>Create and manage class schedules and assignments</p>
+                        </a>
+
+                        <a href="academicyear/manage-academic-years.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3>Academic Years</h3>
+                            <p>Manage academic years and school terms</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Financial Management -->
+                <div class="card">
+                    <h2><i class="fas fa-money-bill-wave"></i> Financial Management</h2>
+                    <div class="dashboard-grid">
+                        <a href="fees/manage-fees.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-money-bill"></i>
+                            </div>
+                            <h3>Manage Fees</h3>
+                            <p>Track fee payments and manage financial records</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3>Financial Reports</h3>
+                            <p>Generate financial reports and analytics</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <h3>Payment History</h3>
+                            <p>View detailed payment history and receipts</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>Fee Calculator</h3>
+                            <p>Calculate fees for different classes and students</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Academic Records & Results -->
+                <div class="card">
+                    <h2><i class="fas fa-file-alt"></i> Academic Records & Results</h2>
+                    <div class="dashboard-grid">
+                        <a href="upload-results/upload-results.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <h3>Upload Results</h3>
+                            <p>Upload and manage student examination results</p>
+                        </a>
+
+                        <a href="prepare results/prepare-results.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>Prepare Results</h3>
+                            <p>Compile and generate PDF results with templates</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Performance Analytics</h3>
+                            <p>Analyze student and class performance data</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3>Generate Reports</h3>
+                            <p>Create academic reports and certificates</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3>Data Management</h3>
+                            <p>Manage academic data and records</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Communication & Administration -->
+                <div class="card">
+                    <h2><i class="fas fa-bullhorn"></i> Communication & Administration</h2>
+                    <div class="dashboard-grid">
+                        <a href="messages/manage-messages.html" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Send Messages</h3>
+                            <p>Send announcements and messages to students and teachers</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h3>System Settings</h3>
+                            <p>Configure system settings and preferences</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <h3>User Management</h3>
+                            <p>Manage user accounts and permissions</p>
+                        </a>
+
+                        <a href="../LoginHomepage/LoginHomepage.HTML" class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Security Settings</h3>
+                            <p>Manage security and access controls</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card">
+                    <h2><i class="fas fa-clock"></i> Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>New Student Added</h4>
+                                <p>John Doe registered as a new student</p>
+                                <small>1 hour ago</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Results Uploaded</h4>
+                                <p>Mathematics results uploaded for Class 10A</p>
+                                <small>3 hours ago</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Message Sent</h4>
+                                <p>Announcement sent to all students</p>
+                                <small>1 day ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../sidebar.js"></script>
+</body>
+</html> 

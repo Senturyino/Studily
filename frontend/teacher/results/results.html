@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Results - Studily</title>
+    <link rel="stylesheet" href="../../studily-theme.css">
+    <link rel="stylesheet" href="../../sidebar.css">
+    <link rel="stylesheet" href="results.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">Teacher Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../Classwork/classwork.html" class="sidebar-nav-item">
+                    <i class="fas fa-book"></i> Classwork
+                </a>
+                <a href="../teacher attendance/attendance.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-check"></i> Attendance
+                </a>
+                <a href="../messages/messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="results.html" class="sidebar-nav-item active">
+                    <i class="fas fa-chart-line"></i> Results
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Record Results</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Teacher</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Page Header -->
+                <div class="card">
+                    <div class="page-header">
+                        <h1><i class="fas fa-chart-line"></i> Record Student Results</h1>
+                        <p>Record individual student marks for your subject. Enter midterm and end-of-term marks for each student.</p>
+                    </div>
+                </div>
+
+                <!-- Teacher Info Card -->
+                <div class="card">
+                    <div class="teacher-info-card">
+                        <div class="teacher-avatar">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="teacher-details">
+                            <h2 id="teacherName">Loading...</h2>
+                            <p class="teacher-subject" id="teacherSubject">Subject: Loading...</p>
+                            <p class="teacher-classes" id="teacherClasses">Classes: Loading...</p>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Total Students</span>
+                                <span class="stat-value" id="totalStudents">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Classes</span>
+                                <span class="stat-value" id="totalClasses">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selection Controls -->
+                <div class="card">
+                    <div class="selection-controls">
+                        <div class="control-group">
+                            <label for="classSelect">Select Class *</label>
+                            <select id="classSelect" required>
+                                <option value="">Choose a class...</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="examTypeSelect">Exam Type *</label>
+                            <select id="examTypeSelect" required>
+                                <option value="">Choose exam type...</option>
+                                <option value="midterm">Midterm/Midsem</option>
+                                <option value="endterm">End of Term</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="academicYearSelect">Academic Year *</label>
+                            <select id="academicYearSelect" required>
+                                <option value="">Choose academic year...</option>
+                                <option value="2023-2024">2023-2024</option>
+                                <option value="2024-2025">2024-2025</option>
+                                <option value="2025-2026">2025-2026</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="semesterSelect">Semester *</label>
+                            <select id="semesterSelect" required>
+                                <option value="">Choose semester...</option>
+                                <option value="First Semester">First Semester</option>
+                                <option value="Second Semester">Second Semester</option>
+                                <option value="Third Semester">Third Semester</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" id="loadStudentsBtn">
+                            <i class="fas fa-users"></i> Load Students
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results Recording Section -->
+                <div id="resultsSection" class="card" style="display: none;">
+                    <div class="results-header">
+                        <h2><i class="fas fa-edit"></i> Record Marks</h2>
+                        <div class="results-summary">
+                            <span class="summary-item">
+                                <i class="fas fa-users"></i>
+                                <span id="studentCount">0</span> Students
+                            </span>
+                            <span class="summary-item">
+                                <i class="fas fa-book"></i>
+                                <span id="subjectName">Subject</span>
+                            </span>
+                            <span class="summary-item">
+                                <i class="fas fa-calendar"></i>
+                                <span id="examTypeDisplay">Exam Type</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Bulk Actions -->
+                    <div class="bulk-actions">
+                        <button class="btn btn-secondary" id="bulkEditBtn">
+                            <i class="fas fa-edit"></i> Bulk Edit
+                        </button>
+                        <button class="btn btn-secondary" id="exportBtn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button class="btn btn-secondary" id="importBtn">
+                            <i class="fas fa-upload"></i> Import
+                        </button>
+                    </div>
+
+                    <!-- Results Table -->
+                    <div class="results-table-container">
+                        <table class="results-table" id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>Marks (Out of 100)</th>
+                                    <th>Grade</th>
+                                    <th>Remarks</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody">
+                                <!-- Student rows will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Save Actions -->
+                    <div class="save-actions">
+                        <button class="btn btn-primary" id="saveAllBtn">
+                            <i class="fas fa-save"></i> Save All Results
+                        </button>
+                        <button class="btn btn-secondary" id="previewBtn">
+                            <i class="fas fa-eye"></i> Preview Results
+                        </button>
+                        <button class="btn btn-secondary" id="clearBtn">
+                            <i class="fas fa-times"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Previous Results -->
+                <div class="card">
+                    <div class="previous-results-header">
+                        <h2><i class="fas fa-history"></i> Previous Results</h2>
+                        <p>View and manage previously recorded results</p>
+                    </div>
+                    
+                    <div class="previous-results-filters">
+                        <div class="filter-group">
+                            <label for="filterClass">Filter by Class:</label>
+                            <select id="filterClass">
+                                <option value="">All Classes</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filterExamType">Filter by Exam Type:</label>
+                            <select id="filterExamType">
+                                <option value="">All Types</option>
+                                <option value="midterm">Midterm</option>
+                                <option value="endterm">End of Term</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filterYear">Filter by Year:</label>
+                            <select id="filterYear">
+                                <option value="">All Years</option>
+                                <option value="2023-2024">2023-2024</option>
+                                <option value="2024-2025">2024-2025</option>
+                                <option value="2025-2026">2025-2026</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-secondary" id="applyFiltersBtn">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                    </div>
+
+                    <div class="previous-results-table-container">
+                        <table class="previous-results-table" id="previousResultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Class</th>
+                                    <th>Exam Type</th>
+                                    <th>Academic Year</th>
+                                    <th>Semester</th>
+                                    <th>Students</th>
+                                    <th>Average</th>
+                                    <th>Last Updated</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="previousResultsTableBody">
+                                <!-- Previous results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Result Modal -->
+    <div id="editResultModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Student Result</h2>
+                <span class="close" onclick="closeEditModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editResultForm">
+                    <div class="form-group">
+                        <label for="editStudentName">Student Name</label>
+                        <input type="text" id="editStudentName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editStudentId">Student ID</label>
+                        <input type="text" id="editStudentId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMarks">Marks (Out of 100) *</label>
+                        <input type="number" id="editMarks" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editGrade">Grade</label>
+                        <input type="text" id="editGrade" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editRemarks">Remarks</label>
+                        <textarea id="editRemarks" rows="3" placeholder="Enter any remarks about the student's performance..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveEditResult()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Results Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-eye"></i> Preview Results</h2>
+                <span class="close" onclick="closePreviewModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="preview-header">
+                    <h3 id="previewTitle">Class Results Preview</h3>
+                    <div class="preview-summary">
+                        <span class="summary-item">
+                            <i class="fas fa-users"></i>
+                            <span id="previewStudentCount">0</span> Students
+                        </span>
+                        <span class="summary-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span id="previewAverage">0</span> Average
+                        </span>
+                        <span class="summary-item">
+                            <i class="fas fa-trophy"></i>
+                            <span id="previewHighest">0</span> Highest
+                        </span>
+                    </div>
+                </div>
+                <div class="preview-table-container">
+                    <table class="preview-table" id="previewTable">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="previewTableBody">
+                            <!-- Preview data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closePreviewModal()">Close</button>
+                <button class="btn btn-primary" onclick="saveFromPreview()">Save Results</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Previous Results Modal -->
+    <div id="viewPreviousResultsModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-history"></i> View Previous Results</h2>
+                <span class="close" onclick="closeViewPreviousResultsModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="previous-results-info">
+                    <div class="result-header-info">
+                        <h3 id="previousResultTitle">Class Results</h3>
+                        <div class="result-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span id="previousResultDate">Date</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-users"></i>
+                                <span id="previousResultStudents">Students</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span id="previousResultAverage">Average</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-trophy"></i>
+                                <span id="previousResultHighest">Highest</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-chart-bar"></i>
+                                <span id="previousResultLowest">Lowest</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-statistics">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4>Grade Distribution</h4>
+                                <div class="grade-distribution" id="gradeDistribution">
+                                    <!-- Grade distribution will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4>Performance Summary</h4>
+                                <div class="performance-summary" id="performanceSummary">
+                                    <!-- Performance summary will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="previous-results-table-container">
+                    <div class="table-header">
+                        <h4><i class="fas fa-list"></i> Student Results</h4>
+                        <div class="table-actions">
+                            <button class="btn btn-small btn-secondary" onclick="exportPreviousResults()">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                            <button class="btn btn-small btn-primary" onclick="printPreviousResults()">
+                                <i class="fas fa-print"></i> Print
+                            </button>
+                        </div>
+                    </div>
+                    <table class="previous-results-detail-table" id="previousResultsDetailTable">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Percentage</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="previousResultsDetailTableBody">
+                            <!-- Previous results detail will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeViewPreviousResultsModal()">Close</button>
+                <button class="btn btn-primary" onclick="editPreviousResultsFromModal()">
+                    <i class="fas fa-edit"></i> Edit Results
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <h2><i class="fas fa-check-circle"></i> Success</h2>
+                <span class="close" onclick="closeSuccessModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage">Results saved successfully!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeSuccessModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header error">
+                <h2><i class="fas fa-exclamation-triangle"></i> Error</h2>
+                <span class="close" onclick="closeErrorModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage">An error occurred. Please try again.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeErrorModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="results.js"></script>
+</body>
+</html> 

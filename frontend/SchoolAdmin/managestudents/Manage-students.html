@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students - Studily</title>
+    <link rel="stylesheet" href="../../studily-theme.css">
+    <link rel="stylesheet" href="../../sidebar.css">
+    <link rel="stylesheet" href="manage-students.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">School Administration</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="Manage-students.html" class="sidebar-nav-item active">
+                    <i class="fas fa-user-graduate"></i> Manage Students
+                </a>
+                <a href="../manage-teachers/manage-teachers.html" class="sidebar-nav-item">
+                    <i class="fas fa-chalkboard-teacher"></i> Manage Teachers
+                </a>
+                <a href="../Class/manage-classes.html" class="sidebar-nav-item">
+                    <i class="fas fa-school"></i> Manage Classes
+                </a>
+                <a href="../fees/manage-fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Manage Fees
+                </a>
+                <a href="../academicyear/manage-academic-years.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-alt"></i> Academic Years
+                </a>
+                <a href="../upload-results/upload-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-upload"></i> Upload Results
+                </a>
+                <a href="../prepare results/prepare-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-calculator"></i> Prepare Results
+                </a>
+                <a href="../messages/manage-messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Manage Students</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Administrator</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Header -->
+                <div class="card">
+                    <div class="header-content">
+                        <h1><i class="fas fa-users"></i> Manage Students</h1>
+                        <button class="enroll-btn" onclick="openEnrollModal()">
+                            <i class="fas fa-plus"></i> Enroll Student
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search and Filter Section -->
+                <div class="card">
+                    <div class="search-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Search students...">
+                        </div>
+                        <div class="filter-options">
+                            <select id="classFilter">
+                                <option value="">All Classes</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                            <select id="yearFilter">
+                                <option value="">All Years</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Students Table -->
+                <div class="card">
+                    <div class="table-container">
+                        <table class="students-table">
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Class</th>
+                                    <th>Academic Year</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsTableBody">
+                                <!-- Students will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="card">
+                    <div class="pagination">
+                        <button class="pagination-btn" onclick="previousPage()">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span id="pageInfo">Page 1 of 1</span>
+                        <button class="pagination-btn" onclick="nextPage()">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Enroll Student Modal -->
+    <div id="enrollModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Enroll New Student</h2>
+                <span class="close" onclick="closeEnrollModal()">&times;</span>
+            </div>
+            <form id="enrollForm" class="enroll-form">
+                <div class="form-group">
+                    <label for="studentId">Student ID *</label>
+                    <input type="text" id="studentId" name="Student_ID" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fullName">Student Full Name *</label>
+                    <input type="text" id="fullName" name="St_Full_N" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Student Email *</label>
+                    <input type="email" id="email" name="St_Email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Student Password *</label>
+                    <input type="password" id="password" name="St_Password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="classId">Class *</label>
+                    <select id="classId" name="class_id" required>
+                        <option value="">Select Class</option>
+                        <!-- Will be populated from database -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="academicYear">Academic Year *</label>
+                    <select id="academicYear" name="Acc_year" required>
+                        <option value="">Select Academic Year</option>
+                        <!-- Will be populated from database -->
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeEnrollModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Enroll Student
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Student Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Student</h2>
+                <span class="close" onclick="closeEditModal()">&times;</span>
+            </div>
+            <form id="editForm" class="enroll-form">
+                <input type="hidden" id="editStudentId" name="Student_ID">
+                
+                <div class="form-group">
+                    <label for="editFullName">Student Full Name *</label>
+                    <input type="text" id="editFullName" name="St_Full_N" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editEmail">Student Email *</label>
+                    <input type="email" id="editEmail" name="St_Email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editClassId">Class *</label>
+                    <select id="editClassId" name="class_id" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editAcademicYear">Academic Year *</label>
+                    <select id="editAcademicYear" name="Acc_year" required>
+                        <option value="">Select Academic Year</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Update Student
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Student Details Modal -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content view-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-graduate"></i> Student Details</h2>
+                <span class="close" onclick="closeViewModal()">&times;</span>
+            </div>
+            <div class="view-content">
+                <div class="student-profile">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="viewStudentName">Student Name</h3>
+                        <p id="viewStudentId" class="student-id">Student ID: <span></span></p>
+                    </div>
+                </div>
+                
+                <div class="student-details-grid">
+                    <div class="detail-section">
+                        <h4><i class="fas fa-info-circle"></i> Personal Information</h4>
+                        <div class="detail-item">
+                            <span class="label">Full Name:</span>
+                            <span id="viewFullName" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Email:</span>
+                            <span id="viewEmail" class="value"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4><i class="fas fa-graduation-cap"></i> Academic Information</h4>
+                        <div class="detail-item">
+                            <span class="label">Class:</span>
+                            <span id="viewClass" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Academic Year:</span>
+                            <span id="viewAcademicYear" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Status:</span>
+                            <span id="viewStatus" class="value"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../sidebar.js"></script>
+    <script src="manage-students.js"></script>
+</body>
+</html>

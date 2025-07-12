@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Academic Years - Studily</title>
+    <link rel="stylesheet" href="../../studily-theme.css">
+    <link rel="stylesheet" href="../../sidebar.css">
+    <link rel="stylesheet" href="manage-academic-years.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">School Administration</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../managestudents/Manage-students.html" class="sidebar-nav-item">
+                    <i class="fas fa-user-graduate"></i> Manage Students
+                </a>
+                <a href="../manage-teachers/manage-teachers.html" class="sidebar-nav-item">
+                    <i class="fas fa-chalkboard-teacher"></i> Manage Teachers
+                </a>
+                <a href="../Class/manage-classes.html" class="sidebar-nav-item">
+                    <i class="fas fa-school"></i> Manage Classes
+                </a>
+                <a href="../fees/manage-fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Manage Fees
+                </a>
+                <a href="manage-academic-years.html" class="sidebar-nav-item active">
+                    <i class="fas fa-calendar-alt"></i> Academic Years
+                </a>
+                <a href="../upload-results/upload-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-upload"></i> Upload Results
+                </a>
+                <a href="../prepare results/prepare-results.html" class="sidebar-nav-item">
+                    <i class="fas fa-calculator"></i> Prepare Results
+                </a>
+                <a href="../messages/manage-messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Manage Academic Years</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Administrator</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Header -->
+                <div class="card">
+                    <div class="header-content">
+                        <h1><i class="fas fa-calendar-alt"></i> Manage Academic Years</h1>
+                        <button class="create-btn" onclick="openCreateModal()">
+                            <i class="fas fa-plus"></i> Create Academic Year
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search and Filter Section -->
+                <div class="card">
+                    <div class="search-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Search academic years...">
+                        </div>
+                        <div class="filter-options">
+                            <select id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="upcoming">Upcoming</option>
+                            </select>
+                            <select id="yearFilter">
+                                <option value="">All Years</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Years Table -->
+                <div class="card">
+                    <div class="table-container">
+                        <table class="academic-years-table">
+                            <thead>
+                                <tr>
+                                    <th>Academic Year</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Semesters</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="academicYearsTableBody">
+                                <!-- Academic years will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="card">
+                    <div class="pagination">
+                        <button class="pagination-btn" onclick="previousPage()">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span id="pageInfo">Page 1 of 1</span>
+                        <button class="pagination-btn" onclick="nextPage()">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Academic Year Modal -->
+    <div id="createModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-calendar-plus"></i> Create New Academic Year</h2>
+                <span class="close" onclick="closeCreateModal()">&times;</span>
+            </div>
+            <form id="createForm" class="academic-year-form">
+                <div class="form-group">
+                    <label for="academicYear">Academic Year *</label>
+                    <input type="text" id="academicYear" name="acc_year" placeholder="e.g., 2024-2025" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="yearName">Year Name *</label>
+                    <input type="text" id="yearName" name="year_name" placeholder="e.g., 2024-2025 Academic Year" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate">Start Date *</label>
+                        <input type="date" id="startDate" name="start_date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="endDate">End Date *</label>
+                        <input type="date" id="endDate" name="end_date" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Status *</label>
+                    <select id="status" name="status" required>
+                        <option value="">Select Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="upcoming">Upcoming</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Semesters *</label>
+                    <div id="semestersContainer">
+                        <div class="semester-item">
+                            <div class="semester-row">
+                                <input type="text" name="semester_names[]" placeholder="Semester Name (e.g., First Semester)" required>
+                                <input type="date" name="semester_start_dates[]" required>
+                                <input type="date" name="semester_end_dates[]" required>
+                                <button type="button" class="btn-remove-semester" onclick="removeSemester(this)" title="Remove Semester">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-add-semester" onclick="addSemester()">
+                        <i class="fas fa-plus"></i> Add Semester
+                    </button>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeCreateModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Create Academic Year
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Academic Year Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Academic Year</h2>
+                <span class="close" onclick="closeEditModal()">&times;</span>
+            </div>
+            <form id="editForm" class="academic-year-form">
+                <input type="hidden" id="editAcademicYearId" name="acc_year">
+                
+                <div class="form-group">
+                    <label for="editYearName">Year Name *</label>
+                    <input type="text" id="editYearName" name="year_name" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editStartDate">Start Date *</label>
+                        <input type="date" id="editStartDate" name="start_date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editEndDate">End Date *</label>
+                        <input type="date" id="editEndDate" name="end_date" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editStatus">Status *</label>
+                    <select id="editStatus" name="status" required>
+                        <option value="">Select Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="upcoming">Upcoming</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Semesters *</label>
+                    <div id="editSemestersContainer">
+                        <!-- Semesters will be populated here -->
+                    </div>
+                    <button type="button" class="btn-add-semester" onclick="addEditSemester()">
+                        <i class="fas fa-plus"></i> Add Semester
+                    </button>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Update Academic Year
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Academic Year Details Modal -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content view-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-calendar-alt"></i> Academic Year Details</h2>
+                <span class="close" onclick="closeViewModal()">&times;</span>
+            </div>
+            <div class="view-content">
+                <div class="academic-year-profile">
+                    <div class="profile-avatar">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="viewYearName">Academic Year Name</h3>
+                        <p id="viewAcademicYearId" class="academic-year-id">Academic Year: <span></span></p>
+                    </div>
+                </div>
+                
+                <div class="academic-year-details-grid">
+                    <div class="detail-section">
+                        <h4><i class="fas fa-info-circle"></i> Basic Information</h4>
+                        <div class="detail-item">
+                            <span class="label">Academic Year:</span>
+                            <span id="viewAcademicYear" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Year Name:</span>
+                            <span id="viewYearNameDetail" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Status:</span>
+                            <span id="viewStatus" class="value status-badge"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4><i class="fas fa-calendar"></i> Date Range</h4>
+                        <div class="detail-item">
+                            <span class="label">Start Date:</span>
+                            <span id="viewStartDate" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">End Date:</span>
+                            <span id="viewEndDate" class="value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Duration:</span>
+                            <span id="viewDuration" class="value"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4><i class="fas fa-graduation-cap"></i> Semesters</h4>
+                        <div id="viewSemesters" class="semesters-list">
+                            <!-- Semesters will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4><i class="fas fa-chart-line"></i> Statistics</h4>
+                        <div class="detail-item">
+                            <span class="label">Total Semesters:</span>
+                            <span id="viewTotalSemesters" class="value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Active Students:</span>
+                            <span id="viewActiveStudents" class="value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Classes:</span>
+                            <span id="viewClasses" class="value">--</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-secondary" onclick="closeViewModal()">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                    <button class="btn-primary" onclick="editFromView()">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="btn-danger" onclick="deleteFromView()">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content delete-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-exclamation-triangle"></i> Confirm Delete</h2>
+                <span class="close" onclick="closeDeleteModal()">&times;</span>
+            </div>
+            <div class="delete-content">
+                <p>Are you sure you want to delete this academic year?</p>
+                <p id="deleteYearName" class="delete-year-name"></p>
+                <p class="warning-text">This action cannot be undone and will affect all associated data.</p>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+                <button type="button" class="btn-danger" onclick="confirmDelete()">
+                    <i class="fas fa-trash"></i> Delete Academic Year
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../sidebar.js"></script>
+    <script src="manage-academic-years.js"></script>
+</body>
+</html> 

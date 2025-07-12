@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Fees - Studily</title>
+    <link rel="stylesheet" href="/frontend/studily-theme.css">
+    <link rel="stylesheet" href="/frontend/sidebar.css">
+    <link rel="stylesheet" href="fees.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">Student Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../Attendance/attendance.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-check"></i> Attendance
+                </a>
+                <a href="../CLASSWORK/classwork.html" class="sidebar-nav-item">
+                    <i class="fas fa-book"></i> Classwork
+                </a>
+                <a href="fees.html" class="sidebar-nav-item active">
+                    <i class="fas fa-money-bill"></i> Fees
+                </a>
+                <a href="../messages/messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="../results/results.html" class="sidebar-nav-item">
+                    <i class="fas fa-chart-line"></i> Results
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">My School Fees</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Student</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <div class="container">
+                    <!-- Header -->
+                    <header class="header">
+                        <div class="header-content">
+                            <h1><i class="fas fa-dollar-sign"></i> My Fees</h1>
+                            <div class="student-info">
+                                <span id="studentName">Loading...</span>
+                                <span id="studentClass">Loading...</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Summary Cards -->
+                    <div class="summary-container">
+                        <div class="summary-card total">
+                            <div class="summary-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3 id="totalAmount">₵0.00</h3>
+                                <p>Total Fees</p>
+                            </div>
+                        </div>
+                        <div class="summary-card paid">
+                            <div class="summary-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3 id="totalPaid">₵0.00</h3>
+                                <p>Total Paid</p>
+                            </div>
+                        </div>
+                        <div class="summary-card outstanding">
+                            <div class="summary-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3 id="totalOutstanding">₵0.00</h3>
+                                <p>Outstanding</p>
+                            </div>
+                        </div>
+                        <div class="summary-card progress">
+                            <div class="summary-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3 id="paymentProgress">0%</h3>
+                                <p>Payment Progress</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Progress Bar -->
+                    <div class="progress-container">
+                        <div class="progress-header">
+                            <h3>Payment Progress</h3>
+                            <span id="progressText">₵0.00 / ₵0.00</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="filters-container">
+                        <div class="filter-group">
+                            <label for="statusFilter">Status:</label>
+                            <select id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="paid">Paid</option>
+                                <option value="pending">Pending</option>
+                                <option value="partial">Partial</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="sortBy">Sort By:</label>
+                            <select id="sortBy">
+                                <option value="due_date">Due Date</option>
+                                <option value="fee_name">Fee Name</option>
+                                <option value="amount">Amount</option>
+                                <option value="status">Status</option>
+                            </select>
+                        </div>
+                        <button id="applyFilters" class="btn btn-primary">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                    </div>
+
+                    <!-- Payment Overview -->
+                    <div class="overview-container">
+                        <div class="overview-card">
+                            <h3>Payment Overview</h3>
+                            <div class="overview-content">
+                                <div class="overview-item">
+                                    <span class="overview-label">Payment Status:</span>
+                                    <span id="paymentStatus" class="overview-value">Loading...</span>
+                                </div>
+                                <div class="overview-item">
+                                    <span class="overview-label">Fully Paid:</span>
+                                    <span id="fullyPaidStatus" class="overview-value">Loading...</span>
+                                </div>
+                                <div class="overview-item">
+                                    <span class="overview-label">Outstanding Balance:</span>
+                                    <span id="outstandingBalance" class="overview-value">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- School Fees List -->
+                    <div class="fees-container">
+                        <div class="fees-header">
+                            <h3>School Fees Records</h3>
+                            <div class="fees-actions">
+                                <button id="exportBtn" class="btn btn-secondary">
+                                    <i class="fas fa-download"></i> Export
+                                </button>
+                                <button id="refreshBtn" class="btn btn-primary">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+                        <div id="feesList" class="fees-list">
+                            <div class="loading-card">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <p>Loading school fees records...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Table View -->
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>School Fees Records</h3>
+                            <div class="table-actions">
+                                <button id="exportTableBtn" class="btn btn-secondary">
+                                    <i class="fas fa-download"></i> Export Table
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="feesTable" class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Fee Name</th>
+                                        <th>Type</th>
+                                        <th>Amount</th>
+                                        <th>Paid</th>
+                                        <th>Outstanding</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th>Payment Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="feesTableBody">
+                                    <tr>
+                                        <td colspan="8" class="loading">Loading school fees records...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- School Fee Detail Modal -->
+    <div id="feeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">School Fee Details</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="fee-details">
+                    <div class="detail-row">
+                        <label>Fee Name:</label>
+                        <span id="modalFeeName"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Fee Category:</label>
+                        <span id="modalFeeType"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Total Amount:</label>
+                        <span id="modalTotalAmount"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Amount Paid:</label>
+                        <span id="modalAmountPaid"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Outstanding Amount:</label>
+                        <span id="modalOutstandingAmount"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Due Date:</label>
+                        <span id="modalDueDate"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Status:</label>
+                        <span id="modalStatus"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Payment Date:</label>
+                        <span id="modalPaymentDate"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Payment Method:</label>
+                        <span id="modalPaymentMethod"></span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Receipt Number:</label>
+                        <span id="modalReceiptNumber"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeFeeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading fee data...</p>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Error</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeErrorModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../sidebar.js"></script>
+    <script src="fees.js"></script>
+</body>
+</html> 

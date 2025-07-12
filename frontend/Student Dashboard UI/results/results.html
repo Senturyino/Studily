@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Results - Studily</title>
+    <link rel="stylesheet" href="/frontend/studily-theme.css">
+    <link rel="stylesheet" href="/frontend/sidebar.css">
+    <link rel="stylesheet" href="results.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../../Studily Logo.png">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-brand">Studily</h1>
+                <p class="sidebar-subtitle">Student Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html" class="sidebar-nav-item">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="../Attendance/attendance.html" class="sidebar-nav-item">
+                    <i class="fas fa-calendar-check"></i> Attendance
+                </a>
+                <a href="../CLASSWORK/classwork.html" class="sidebar-nav-item">
+                    <i class="fas fa-book"></i> Classwork
+                </a>
+                <a href="../Fees/fees.html" class="sidebar-nav-item">
+                    <i class="fas fa-money-bill"></i> Fees
+                </a>
+                <a href="../messages/messages.html" class="sidebar-nav-item">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="results.html" class="sidebar-nav-item active">
+                    <i class="fas fa-chart-line"></i> Results
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../LoginHomepage/LoginHomepage.HTML" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="sidebar-toggle" aria-label="Toggle sidebar menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">My Academic Results</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, Student</span>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <div class="container">
+                    <!-- Page Header -->
+                    <div class="page-header">
+                        <h1><i class="fas fa-chart-line"></i> My Academic Results</h1>
+                        <p>View and download your semester results and academic performance</p>
+                    </div>
+
+                    <!-- Student Info Card -->
+                    <div class="student-info-card">
+                        <div class="student-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="student-details">
+                            <h2 id="studentName">Loading...</h2>
+                            <p class="student-id" id="studentId">Student ID: Loading...</p>
+                            <p class="student-class" id="studentClass">Class: Loading...</p>
+                        </div>
+                        <div class="student-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Total Results</span>
+                                <span class="stat-value" id="totalResults">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Latest Upload</span>
+                                <span class="stat-value" id="latestUpload">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Filter -->
+                    <div class="filter-section">
+                        <div class="filter-controls">
+                            <div class="filter-group">
+                                <label for="semesterFilter">Filter by Semester:</label>
+                                <select id="semesterFilter">
+                                    <option value="">All Semesters</option>
+                                    <option value="First Semester">First Semester</option>
+                                    <option value="Second Semester">Second Semester</option>
+                                    <option value="Third Semester">Third Semester</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="yearFilter">Filter by Year:</label>
+                                <select id="yearFilter">
+                                    <option value="">All Years</option>
+                                    <option value="2023-2024">2023-2024</option>
+                                    <option value="2024-2025">2024-2025</option>
+                                    <option value="2025-2026">2025-2026</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-secondary" id="clearFilters">
+                                <i class="fas fa-times"></i> Clear Filters
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results List -->
+                    <div class="results-container">
+                        <div id="loadingState" class="loading-state">
+                            <div class="loading-spinner">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                            <p>Loading your results...</p>
+                        </div>
+
+                        <div id="emptyState" class="empty-state" style="display: none;">
+                            <div class="empty-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h3>No Results Found</h3>
+                            <p>You don't have any results uploaded yet. Results will appear here once they are uploaded by your school administration.</p>
+                        </div>
+
+                        <div id="resultsList" class="results-list" style="display: none;">
+                            <!-- Results will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <div class="action-card">
+                            <div class="action-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <h3>Download All</h3>
+                            <p>Download all your results as a ZIP file</p>
+                            <button class="btn btn-primary" id="downloadAllBtn">
+                                <i class="fas fa-download"></i> Download All
+                            </button>
+                        </div>
+
+                        <div class="action-card">
+                            <div class="action-icon">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <h3>Print Results</h3>
+                            <p>Print your results for physical records</p>
+                            <button class="btn btn-secondary" id="printResultsBtn">
+                                <i class="fas fa-print"></i> Print
+                            </button>
+                        </div>
+
+                        <div class="action-card">
+                            <div class="action-icon">
+                                <i class="fas fa-share"></i>
+                            </div>
+                            <h3>Share Results</h3>
+                            <p>Share your results with parents or guardians</p>
+                            <button class="btn btn-secondary" id="shareResultsBtn">
+                                <i class="fas fa-share"></i> Share
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Academic Summary -->
+                    <div class="academic-summary">
+                        <h3><i class="fas fa-chart-bar"></i> Academic Summary</h3>
+                        <div class="summary-grid">
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="summary-content">
+                                    <h4>Best Performance</h4>
+                                    <p id="bestPerformance">Loading...</p>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-trending-up"></i>
+                                </div>
+                                <div class="summary-content">
+                                    <h4>Progress Trend</h4>
+                                    <p id="progressTrend">Loading...</p>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="summary-content">
+                                    <h4>Latest Result</h4>
+                                    <p id="latestResult">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PDF Viewer Modal -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content pdf-modal">
+            <div class="modal-header">
+                <h2 id="pdfModalTitle">Viewing Result</h2>
+                <span class="close" onclick="closePdfModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="pdf-controls">
+                    <button class="btn btn-primary" id="downloadPdfBtn">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    <button class="btn btn-secondary" id="printPdfBtn">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+                <div class="pdf-viewer">
+                    <iframe id="pdfViewer" src="" width="100%" height="600px"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../sidebar.js"></script>
+    <script src="results.js"></script>
+</body>
+</html> 
